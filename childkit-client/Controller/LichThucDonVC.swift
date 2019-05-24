@@ -92,4 +92,9 @@ extension LichThucDonVC: UITableViewDelegate, UITableViewDataSource {
         navigationController?.pushViewController(binhLuanVC, animated: true)
     }
     
+    @IBAction func ghiChuWasPressed(_ sender: UIButton) {
+        let ghiChuVC = (storyboard?.instantiateViewController(withIdentifier: "ghichu") as? GhiChuVC)!
+        navigationController?.pushViewController(ghiChuVC, animated: true)
+    }
+    
 }
