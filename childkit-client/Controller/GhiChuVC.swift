@@ -16,7 +16,6 @@ class GhiChuVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     @IBAction func sendWasPressed(_ sender: CornerButton) {
-        let lichVC = (storyboard?.instantiateViewController(withIdentifier: "lichthucdon") as? LichThucDonVC)!
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
