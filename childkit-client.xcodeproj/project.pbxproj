@@ -11,8 +11,10 @@
 		2529C7092296238D00887EAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2529C7082296238D00887EAF /* AppDelegate.swift */; };
 		2529C70B2296238D00887EAF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2529C70A2296238D00887EAF /* LoginVC.swift */; };
 		2529C70E2296238D00887EAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2529C70C2296238D00887EAF /* Main.storyboard */; };
-		2529C7102296238E00887EAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2529C70F2296238E00887EAF /* Assets.xcassets */; };
 		2529C7132296238E00887EAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2529C7112296238E00887EAF /* LaunchScreen.storyboard */; };
+		2546D72122978247007ED0A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2546D72022978247007ED0A2 /* Assets.xcassets */; };
+		2546D72322978785007ED0A2 /* LichThucDonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2546D72222978785007ED0A2 /* LichThucDonVC.swift */; };
+		2546D725229791B2007ED0A2 /* LichCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2546D724229791B2007ED0A2 /* LichCell.swift */; };
 		833852755FDCF9FFB6D4F3C6 /* Pods_childkit_client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5F497AC6BE8319CE94404D /* Pods_childkit_client.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,9 +24,11 @@
 		2529C7082296238D00887EAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2529C70A2296238D00887EAF /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		2529C70D2296238D00887EAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2529C70F2296238E00887EAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2529C7122296238E00887EAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2529C7142296238E00887EAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2546D72022978247007ED0A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2546D72222978785007ED0A2 /* LichThucDonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LichThucDonVC.swift; sourceTree = "<group>"; };
+		2546D724229791B2007ED0A2 /* LichCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LichCell.swift; sourceTree = "<group>"; };
 		40070DA461B6C5F7915C5AD2 /* Pods-childkit-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-childkit-client.debug.xcconfig"; path = "Target Support Files/Pods-childkit-client/Pods-childkit-client.debug.xcconfig"; sourceTree = "<group>"; };
 		7E5F497AC6BE8319CE94404D /* Pods_childkit_client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_childkit_client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B079E9AF84C3BEDE00D209BA /* Pods-childkit-client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-childkit-client.release.xcconfig"; path = "Target Support Files/Pods-childkit-client/Pods-childkit-client.release.xcconfig"; sourceTree = "<group>"; };
@@ -46,6 +50,7 @@
 			isa = PBXGroup;
 			children = (
 				2529C70A2296238D00887EAF /* LoginVC.swift */,
+				2546D72222978785007ED0A2 /* LichThucDonVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -53,6 +58,7 @@
 		2518BE4A22962FB1002121E6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2546D724229791B2007ED0A2 /* LichCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -99,8 +105,8 @@
 				2518BE4922962FA6002121E6 /* Controller */,
 				2529C7082296238D00887EAF /* AppDelegate.swift */,
 				2529C70C2296238D00887EAF /* Main.storyboard */,
-				2529C70F2296238E00887EAF /* Assets.xcassets */,
 				2529C7112296238E00887EAF /* LaunchScreen.storyboard */,
+				2546D72022978247007ED0A2 /* Assets.xcassets */,
 				2529C7142296238E00887EAF /* Info.plist */,
 			);
 			path = "childkit-client";
@@ -184,7 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2529C7132296238E00887EAF /* LaunchScreen.storyboard in Resources */,
-				2529C7102296238E00887EAF /* Assets.xcassets in Resources */,
+				2546D72122978247007ED0A2 /* Assets.xcassets in Resources */,
 				2529C70E2296238D00887EAF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,8 +244,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2546D72322978785007ED0A2 /* LichThucDonVC.swift in Sources */,
 				2529C70B2296238D00887EAF /* LoginVC.swift in Sources */,
 				2529C7092296238D00887EAF /* AppDelegate.swift in Sources */,
+				2546D725229791B2007ED0A2 /* LichCell.swift in Sources */,
 				2518BE4E22963037002121E6 /* BorderButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
