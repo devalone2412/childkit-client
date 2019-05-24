@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SWRevealViewController
 
 class LichThucDonVC: UIViewController {
 
@@ -14,6 +15,8 @@ class LichThucDonVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.addGestureRecognizer((self.revealViewController()?.panGestureRecognizer())!)
+        
         // Do any additional setup after loading the view.
         lichTableView.delegate = self
         lichTableView.dataSource = self
@@ -45,7 +48,15 @@ extension LichThucDonVC: UITableViewDelegate, UITableViewDataSource {
             headerView.textLabel?.textColor = .orange
             headerView.textLabel?.textAlignment = .center
             headerView.textLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 27)
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(headerTableTap))
+            headerView.addGestureRecognizer(tap)
         }
+    }
+    
+    @objc func headerTableTap() {
+        let chinhSuaLichVC = (storyboard?.instantiateViewController(withIdentifier: "chinhsualich") as? ChinhSuaLichVC)!
+        navigationController?.pushViewController(chinhSuaLichVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
