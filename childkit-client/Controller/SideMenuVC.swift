@@ -16,7 +16,7 @@ class SideMenuVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func dangXuatWasPressed(_ sender: BorderButton) {
+    @IBAction func dangXuatWasPressed(_ sender: CornerButton) {
         let revealVC = self.revealViewController()
         let loginVC = storyboard?.instantiateViewController(withIdentifier: "login") as? LoginVC
         revealVC?.pushFrontViewController(loginVC, animated: true)

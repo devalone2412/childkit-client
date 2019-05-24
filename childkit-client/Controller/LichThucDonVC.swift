@@ -87,5 +87,9 @@ extension LichThucDonVC: UITableViewDelegate, UITableViewDataSource {
         return cell!
     }
     
+    @IBAction func vietBinhLuanPressed(_ sender: CornerButton) {
+        let binhLuanVC = (storyboard?.instantiateViewController(withIdentifier: "binhluan") as? BinhLuanVC)!
+        navigationController?.pushViewController(binhLuanVC, animated: true)
+    }
     
 }

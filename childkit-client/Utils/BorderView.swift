@@ -1,5 +1,5 @@
 //
-//  BorderButton.swift
+//  BorderView.swift
 //  childkit-client
 //
 //  Created by SANG on 5/24/19.
@@ -8,12 +8,11 @@
 
 import UIKit
 
-class BorderButton: UIButton {
+class BorderView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.layer.borderWidth = 1
     }
-
 }

@@ -2,18 +2,17 @@
 //  BorderButton.swift
 //  childkit-client
 //
-//  Created by SANG on 5/24/19.
+//  Created by SANG on 5/23/19.
 //  Copyright © 2019 SANG. All rights reserved.
 //
 
 import UIKit
 
-class BorderButton: UIButton {
+class CornerButton: UIButton {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.layer.borderWidth = 1
+        self.layer.cornerRadius = 10
     }
 
 }

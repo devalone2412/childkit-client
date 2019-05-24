@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2518BE4E22963037002121E6 /* BorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2518BE4D22963037002121E6 /* BorderButton.swift */; };
+		2518BE4E22963037002121E6 /* CornerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2518BE4D22963037002121E6 /* CornerButton.swift */; };
 		2529C7092296238D00887EAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2529C7082296238D00887EAF /* AppDelegate.swift */; };
 		2529C70B2296238D00887EAF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2529C70A2296238D00887EAF /* LoginVC.swift */; };
 		2529C70E2296238D00887EAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2529C70C2296238D00887EAF /* Main.storyboard */; };
@@ -20,11 +20,15 @@
 		259762872297A8C100F9A058 /* ThemMonAnVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259762862297A8C100F9A058 /* ThemMonAnVC.swift */; };
 		259762892297AC6B00F9A058 /* MonAnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259762882297AC6B00F9A058 /* MonAnCell.swift */; };
 		2597628B2297B92000F9A058 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2597628A2297B92000F9A058 /* SideMenuVC.swift */; };
+		25ECED882297BDC400F3693B /* BinhLuanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ECED872297BDC400F3693B /* BinhLuanVC.swift */; };
+		25ECED8C2297C69F00F3693B /* BorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ECED8B2297C69F00F3693B /* BorderButton.swift */; };
+		25ECED8E2297C6E400F3693B /* BorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ECED8D2297C6E400F3693B /* BorderView.swift */; };
+		25ECED902297CBE400F3693B /* BinhLuanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ECED8F2297CBE400F3693B /* BinhLuanCell.swift */; };
 		833852755FDCF9FFB6D4F3C6 /* Pods_childkit_client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5F497AC6BE8319CE94404D /* Pods_childkit_client.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2518BE4D22963037002121E6 /* BorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderButton.swift; sourceTree = "<group>"; };
+		2518BE4D22963037002121E6 /* CornerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerButton.swift; sourceTree = "<group>"; };
 		2529C7052296238D00887EAF /* childkit-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "childkit-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2529C7082296238D00887EAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2529C70A2296238D00887EAF /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -39,6 +43,10 @@
 		259762862297A8C100F9A058 /* ThemMonAnVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemMonAnVC.swift; sourceTree = "<group>"; };
 		259762882297AC6B00F9A058 /* MonAnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonAnCell.swift; sourceTree = "<group>"; };
 		2597628A2297B92000F9A058 /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
+		25ECED872297BDC400F3693B /* BinhLuanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinhLuanVC.swift; sourceTree = "<group>"; };
+		25ECED8B2297C69F00F3693B /* BorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderButton.swift; sourceTree = "<group>"; };
+		25ECED8D2297C6E400F3693B /* BorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderView.swift; sourceTree = "<group>"; };
+		25ECED8F2297CBE400F3693B /* BinhLuanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinhLuanCell.swift; sourceTree = "<group>"; };
 		40070DA461B6C5F7915C5AD2 /* Pods-childkit-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-childkit-client.debug.xcconfig"; path = "Target Support Files/Pods-childkit-client/Pods-childkit-client.debug.xcconfig"; sourceTree = "<group>"; };
 		7E5F497AC6BE8319CE94404D /* Pods_childkit_client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_childkit_client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B079E9AF84C3BEDE00D209BA /* Pods-childkit-client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-childkit-client.release.xcconfig"; path = "Target Support Files/Pods-childkit-client/Pods-childkit-client.release.xcconfig"; sourceTree = "<group>"; };
@@ -64,6 +72,7 @@
 				259762802297989E00F9A058 /* ChinhSuaLichVC.swift */,
 				259762862297A8C100F9A058 /* ThemMonAnVC.swift */,
 				2597628A2297B92000F9A058 /* SideMenuVC.swift */,
+				25ECED872297BDC400F3693B /* BinhLuanVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -74,6 +83,7 @@
 				2546D724229791B2007ED0A2 /* LichCell.swift */,
 				259762822297A37F00F9A058 /* ChinhSuaLichCell.swift */,
 				259762882297AC6B00F9A058 /* MonAnCell.swift */,
+				25ECED8F2297CBE400F3693B /* BinhLuanCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -88,7 +98,9 @@
 		2518BE4C22963017002121E6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				2518BE4D22963037002121E6 /* BorderButton.swift */,
+				2518BE4D22963037002121E6 /* CornerButton.swift */,
+				25ECED8B2297C69F00F3693B /* BorderButton.swift */,
+				25ECED8D2297C6E400F3693B /* BorderView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -259,8 +271,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25ECED8C2297C69F00F3693B /* BorderButton.swift in Sources */,
 				2546D72322978785007ED0A2 /* LichThucDonVC.swift in Sources */,
 				259762832297A37F00F9A058 /* ChinhSuaLichCell.swift in Sources */,
+				25ECED882297BDC400F3693B /* BinhLuanVC.swift in Sources */,
+				25ECED902297CBE400F3693B /* BinhLuanCell.swift in Sources */,
 				2529C70B2296238D00887EAF /* LoginVC.swift in Sources */,
 				2529C7092296238D00887EAF /* AppDelegate.swift in Sources */,
 				2597628B2297B92000F9A058 /* SideMenuVC.swift in Sources */,
@@ -268,7 +283,8 @@
 				259762872297A8C100F9A058 /* ThemMonAnVC.swift in Sources */,
 				259762812297989E00F9A058 /* ChinhSuaLichVC.swift in Sources */,
 				2546D725229791B2007ED0A2 /* LichCell.swift in Sources */,
-				2518BE4E22963037002121E6 /* BorderButton.swift in Sources */,
+				25ECED8E2297C6E400F3693B /* BorderView.swift in Sources */,
+				2518BE4E22963037002121E6 /* CornerButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
