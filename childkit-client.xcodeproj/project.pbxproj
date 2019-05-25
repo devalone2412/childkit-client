@@ -29,8 +29,9 @@
 		25ECED992297E21E00F3693B /* VoteThucDonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ECED982297E21E00F3693B /* VoteThucDonVC.swift */; };
 		25ECED9B2297E62900F3693B /* VoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ECED9A2297E62900F3693B /* VoteCell.swift */; };
 		3D94299C22998B76009F1976 /* ChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D94299B22998B76009F1976 /* ChildCell.swift */; };
-		3D94299E22998C79009F1976 /* DatTiecVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D94299D22998C79009F1976 /* DatTiecVC.swift */; };
+		3D94299E22998C79009F1976 /* DatTiecPHVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D94299D22998C79009F1976 /* DatTiecPHVC.swift */; };
 		3D9429A22299986E009F1976 /* CornerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9429A12299986E009F1976 /* CornerTableView.swift */; };
+		3D9429A42299A1E1009F1976 /* DatTiecGVVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9429A32299A1E1009F1976 /* DatTiecGVVC.swift */; };
 		833852755FDCF9FFB6D4F3C6 /* Pods_childkit_client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5F497AC6BE8319CE94404D /* Pods_childkit_client.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,8 +60,9 @@
 		25ECED982297E21E00F3693B /* VoteThucDonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteThucDonVC.swift; sourceTree = "<group>"; };
 		25ECED9A2297E62900F3693B /* VoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteCell.swift; sourceTree = "<group>"; };
 		3D94299B22998B76009F1976 /* ChildCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildCell.swift; sourceTree = "<group>"; };
-		3D94299D22998C79009F1976 /* DatTiecVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatTiecVC.swift; sourceTree = "<group>"; };
+		3D94299D22998C79009F1976 /* DatTiecPHVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatTiecPHVC.swift; sourceTree = "<group>"; };
 		3D9429A12299986E009F1976 /* CornerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerTableView.swift; sourceTree = "<group>"; };
+		3D9429A32299A1E1009F1976 /* DatTiecGVVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatTiecGVVC.swift; sourceTree = "<group>"; };
 		40070DA461B6C5F7915C5AD2 /* Pods-childkit-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-childkit-client.debug.xcconfig"; path = "Target Support Files/Pods-childkit-client/Pods-childkit-client.debug.xcconfig"; sourceTree = "<group>"; };
 		7E5F497AC6BE8319CE94404D /* Pods_childkit_client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_childkit_client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B079E9AF84C3BEDE00D209BA /* Pods-childkit-client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-childkit-client.release.xcconfig"; path = "Target Support Files/Pods-childkit-client/Pods-childkit-client.release.xcconfig"; sourceTree = "<group>"; };
@@ -89,7 +91,8 @@
 				25ECED872297BDC400F3693B /* BinhLuanVC.swift */,
 				25ECED912297DB9A00F3693B /* GhiChuVC.swift */,
 				25ECED982297E21E00F3693B /* VoteThucDonVC.swift */,
-				3D94299D22998C79009F1976 /* DatTiecVC.swift */,
+				3D94299D22998C79009F1976 /* DatTiecPHVC.swift */,
+				3D9429A32299A1E1009F1976 /* DatTiecGVVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				25ECED922297DB9A00F3693B /* GhiChuVC.swift in Sources */,
 				25ECED882297BDC400F3693B /* BinhLuanVC.swift in Sources */,
 				25ECED902297CBE400F3693B /* BinhLuanCell.swift in Sources */,
+				3D9429A42299A1E1009F1976 /* DatTiecGVVC.swift in Sources */,
 				2529C70B2296238D00887EAF /* LoginVC.swift in Sources */,
 				2529C7092296238D00887EAF /* AppDelegate.swift in Sources */,
 				25ECED972297DF9D00F3693B /* CornerTextView.swift in Sources */,
@@ -305,7 +309,7 @@
 				2597628B2297B92000F9A058 /* SideMenuVC.swift in Sources */,
 				259762892297AC6B00F9A058 /* MonAnCell.swift in Sources */,
 				3D94299C22998B76009F1976 /* ChildCell.swift in Sources */,
-				3D94299E22998C79009F1976 /* DatTiecVC.swift in Sources */,
+				3D94299E22998C79009F1976 /* DatTiecPHVC.swift in Sources */,
 				259762872297A8C100F9A058 /* ThemMonAnVC.swift in Sources */,
 				259762812297989E00F9A058 /* ChinhSuaLichVC.swift in Sources */,
 				25ECED992297E21E00F3693B /* VoteThucDonVC.swift in Sources */,

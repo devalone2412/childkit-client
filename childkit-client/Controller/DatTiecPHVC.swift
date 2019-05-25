@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DatTiecVC: UIViewController {
+class DatTiecPHVC: UIViewController {
 
     @IBOutlet weak var childTableView: UITableView!
     @IBOutlet weak var foodBirthTableView: UITableView!
@@ -24,7 +24,7 @@ class DatTiecVC: UIViewController {
 
 }
 
-extension DatTiecVC: UITableViewDelegate, UITableViewDataSource {
+extension DatTiecPHVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch tableView {
         case childTableView:
