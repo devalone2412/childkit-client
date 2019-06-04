@@ -28,10 +28,15 @@
 		25ECED972297DF9D00F3693B /* CornerTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ECED962297DF9D00F3693B /* CornerTextView.swift */; };
 		25ECED992297E21E00F3693B /* VoteThucDonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ECED982297E21E00F3693B /* VoteThucDonVC.swift */; };
 		25ECED9B2297E62900F3693B /* VoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ECED9A2297E62900F3693B /* VoteCell.swift */; };
+		3D2C68E322A66ABB00AC8E7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D2C68E222A66ABB00AC8E7A /* GoogleService-Info.plist */; };
 		3D94299C22998B76009F1976 /* ChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D94299B22998B76009F1976 /* ChildCell.swift */; };
 		3D94299E22998C79009F1976 /* DatTiecPHVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D94299D22998C79009F1976 /* DatTiecPHVC.swift */; };
 		3D9429A22299986E009F1976 /* CornerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9429A12299986E009F1976 /* CornerTableView.swift */; };
 		3D9429A42299A1E1009F1976 /* DatTiecGVVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9429A32299A1E1009F1976 /* DatTiecGVVC.swift */; };
+		3DBA85C7229A45180060ADDE /* CategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA85C6229A45180060ADDE /* CategoryVC.swift */; };
+		3DBA85C9229A47A50060ADDE /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA85C8229A47A50060ADDE /* CategoryCell.swift */; };
+		3DBA85CB229A4C9D0060ADDE /* FoodByCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA85CA229A4C9D0060ADDE /* FoodByCategoryVC.swift */; };
+		3DBA85CD229A53A80060ADDE /* ThemMonAn2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA85CC229A53A80060ADDE /* ThemMonAn2VC.swift */; };
 		833852755FDCF9FFB6D4F3C6 /* Pods_childkit_client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5F497AC6BE8319CE94404D /* Pods_childkit_client.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,10 +64,15 @@
 		25ECED962297DF9D00F3693B /* CornerTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerTextView.swift; sourceTree = "<group>"; };
 		25ECED982297E21E00F3693B /* VoteThucDonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteThucDonVC.swift; sourceTree = "<group>"; };
 		25ECED9A2297E62900F3693B /* VoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteCell.swift; sourceTree = "<group>"; };
+		3D2C68E222A66ABB00AC8E7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D94299B22998B76009F1976 /* ChildCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildCell.swift; sourceTree = "<group>"; };
 		3D94299D22998C79009F1976 /* DatTiecPHVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatTiecPHVC.swift; sourceTree = "<group>"; };
 		3D9429A12299986E009F1976 /* CornerTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerTableView.swift; sourceTree = "<group>"; };
 		3D9429A32299A1E1009F1976 /* DatTiecGVVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatTiecGVVC.swift; sourceTree = "<group>"; };
+		3DBA85C6229A45180060ADDE /* CategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVC.swift; sourceTree = "<group>"; };
+		3DBA85C8229A47A50060ADDE /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		3DBA85CA229A4C9D0060ADDE /* FoodByCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodByCategoryVC.swift; sourceTree = "<group>"; };
+		3DBA85CC229A53A80060ADDE /* ThemMonAn2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemMonAn2VC.swift; sourceTree = "<group>"; };
 		40070DA461B6C5F7915C5AD2 /* Pods-childkit-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-childkit-client.debug.xcconfig"; path = "Target Support Files/Pods-childkit-client/Pods-childkit-client.debug.xcconfig"; sourceTree = "<group>"; };
 		7E5F497AC6BE8319CE94404D /* Pods_childkit_client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_childkit_client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B079E9AF84C3BEDE00D209BA /* Pods-childkit-client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-childkit-client.release.xcconfig"; path = "Target Support Files/Pods-childkit-client/Pods-childkit-client.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +103,9 @@
 				25ECED982297E21E00F3693B /* VoteThucDonVC.swift */,
 				3D94299D22998C79009F1976 /* DatTiecPHVC.swift */,
 				3D9429A32299A1E1009F1976 /* DatTiecGVVC.swift */,
+				3DBA85C6229A45180060ADDE /* CategoryVC.swift */,
+				3DBA85CA229A4C9D0060ADDE /* FoodByCategoryVC.swift */,
+				3DBA85CC229A53A80060ADDE /* ThemMonAn2VC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -106,6 +119,7 @@
 				25ECED8F2297CBE400F3693B /* BinhLuanCell.swift */,
 				25ECED9A2297E62900F3693B /* VoteCell.swift */,
 				3D94299B22998B76009F1976 /* ChildCell.swift */,
+				3DBA85C8229A47A50060ADDE /* CategoryCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -159,6 +173,7 @@
 				2529C7112296238E00887EAF /* LaunchScreen.storyboard */,
 				2546D72022978247007ED0A2 /* Assets.xcassets */,
 				2529C7142296238E00887EAF /* Info.plist */,
+				3D2C68E222A66ABB00AC8E7A /* GoogleService-Info.plist */,
 			);
 			path = "childkit-client";
 			sourceTree = "<group>";
@@ -241,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2529C7132296238E00887EAF /* LaunchScreen.storyboard in Resources */,
+				3D2C68E322A66ABB00AC8E7A /* GoogleService-Info.plist in Resources */,
 				2546D72122978247007ED0A2 /* Assets.xcassets in Resources */,
 				2529C70E2296238D00887EAF /* Main.storyboard in Resources */,
 			);
@@ -296,8 +312,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				25ECED8C2297C69F00F3693B /* BorderButton.swift in Sources */,
+				3DBA85CD229A53A80060ADDE /* ThemMonAn2VC.swift in Sources */,
 				2546D72322978785007ED0A2 /* LichThucDonVC.swift in Sources */,
 				259762832297A37F00F9A058 /* ChinhSuaLichCell.swift in Sources */,
+				3DBA85CB229A4C9D0060ADDE /* FoodByCategoryVC.swift in Sources */,
 				25ECED922297DB9A00F3693B /* GhiChuVC.swift in Sources */,
 				25ECED882297BDC400F3693B /* BinhLuanVC.swift in Sources */,
 				25ECED902297CBE400F3693B /* BinhLuanCell.swift in Sources */,
@@ -306,8 +324,10 @@
 				2529C7092296238D00887EAF /* AppDelegate.swift in Sources */,
 				25ECED972297DF9D00F3693B /* CornerTextView.swift in Sources */,
 				25ECED9B2297E62900F3693B /* VoteCell.swift in Sources */,
+				3DBA85C9229A47A50060ADDE /* CategoryCell.swift in Sources */,
 				2597628B2297B92000F9A058 /* SideMenuVC.swift in Sources */,
 				259762892297AC6B00F9A058 /* MonAnCell.swift in Sources */,
+				3DBA85C7229A45180060ADDE /* CategoryVC.swift in Sources */,
 				3D94299C22998B76009F1976 /* ChildCell.swift in Sources */,
 				3D94299E22998C79009F1976 /* DatTiecPHVC.swift in Sources */,
 				259762872297A8C100F9A058 /* ThemMonAnVC.swift in Sources */,

@@ -7,4 +7,9 @@ target 'childkit-client' do
 
   # Pods for childkit-client
 pod 'SWRevealViewController', '~> 2.3'
+pod 'Toast-Swift', '~> 4.0.0'
+pod 'BTNavigationDropdownMenu'
+pod 'IQKeyboardManagerSwift'
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
 end

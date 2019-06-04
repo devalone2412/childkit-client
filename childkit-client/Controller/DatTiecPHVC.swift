@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SWRevealViewController
 
 class DatTiecPHVC: UIViewController {
 
@@ -15,6 +16,8 @@ class DatTiecPHVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        self.view.addGestureRecognizer((self.revealViewController()?.panGestureRecognizer())!)
         // Do any additional setup after loading the view.
         childTableView.delegate = self
         childTableView.dataSource = self
