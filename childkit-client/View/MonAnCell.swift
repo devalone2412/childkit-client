@@ -20,19 +20,10 @@ class MonAnCell: UITableViewCell {
     func configure(image: UIImage = UIImage(named: "food")!, tenMon: String, kCal: String, protein: String, lipit: String, glucit: String) {
         self.foodImage.image = image
         self.tenMonLbl.text = tenMon
-        self.kcalLbl.text = "\(kCal)kcal"
+        self.kcalLbl.text = "\(kCal)Cal"
         self.proteinLbl.text = "Protein: \(protein)g"
         self.lipitLbl.text = "Lipit: \(lipit)g"
         self.glucitLbl.text = "Glucit: \(glucit)g"
-    }
-    @IBAction func selectedFood(_ sender: UIButton) {
-        if (sender.currentImage?.isEqual(UIImage(named: "unchecked")))! {
-            print("Đã ở trong 1")
-            sender.setImage(UIImage(named: "checked"), for: .normal)
-        } else {
-            sender.setImage(UIImage(named: "unchecked"), for: .normal)
-            print("Đã ở trong 2")
-        }
     }
     
 }

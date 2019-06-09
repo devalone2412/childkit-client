@@ -17,10 +17,10 @@ class LichCell: UITableViewCell {
     @IBOutlet weak var lipitLbl: UILabel!
     @IBOutlet weak var glucitLbl: UILabel!
     
-    func configure(image: UIImage = UIImage(named: "food")!, tenMon: String, kCal: String, protein: String, lipit: String, glucit: String) {
+    func configure(image: UIImage, tenMon: String, kCal: String, protein: String, lipit: String, glucit: String) {
         self.foodImage.image = image
         self.tenMonLbl.text = tenMon
-        self.kcalLbl.text = "\(kCal)kcal"
+        self.kcalLbl.text = "\(kCal)Cal"
         self.proteinLbl.text = "Protein: \(protein)g"
         self.lipitLbl.text = "Lipit: \(lipit)g"
         self.glucitLbl.text = "Glucit: \(glucit)g"

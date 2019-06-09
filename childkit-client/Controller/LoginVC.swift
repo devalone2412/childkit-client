@@ -9,17 +9,33 @@
 import UIKit
 import FirebaseAuth
 import Toast_Swift
+import FirebaseDatabase
 
 class LoginVC: UIViewController {
+    
 
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
-    let defaults = UserDefaults.standard
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configDismissKeyboard()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if Auth.auth().currentUser != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let lichThucDonVC = storyboard.instantiateViewController(withIdentifier: "lichthucdon") as! LichThucDonVC
+            let nav = UINavigationController(rootViewController: lichThucDonVC)
+            let revealController = self.revealViewController()
+            revealController?.pushFrontViewController(nav, animated: true)
+        } else {
+            if let emailData = defaults.object(forKey: "email") as? String, let passwordData = defaults.object(forKey: "password") as? String {
+                emailTF.text = emailData
+                passwordTF.text = passwordData
+            }
+        }
     }
     
     func configDismissKeyboard() {
@@ -38,7 +54,39 @@ class LoginVC: UIViewController {
         if let email = emailTF.text, let password = passwordTF.text, email != "", password != "" {
             Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
                 if error == nil {
+                    var quyen = ""
                     guard let user = authResult?.user else { return }
+                    ref_PH.observe(.value, with: { (snapshot) in
+                        for data in snapshot.children.allObjects as! [DataSnapshot] {
+                            let phObjs = data.value as! [String: AnyObject]
+                            if user.uid == phObjs["uid"] as! String {
+                                quyen = (phObjs["quyen"] as? String)!
+                                defaults.set(quyen, forKey: "quyen")
+                                break
+                            }
+                        }
+                    })
+                    
+                    if quyen == "" {
+                        ref_NV.observe(.value, with: { (snapshot) in
+                            for data in snapshot.children.allObjects as! [DataSnapshot] {
+                                let nvObjs = data.value as! [String: AnyObject]
+                                if user.uid == nvObjs["uid"] as! String {
+                                    quyen = (nvObjs["quyen"] as? String)!
+                                    defaults.set(quyen, forKey: "quyen")
+                                    break
+                                }
+                            }
+                        })
+                    }
+                    
+                    defaults.set(email, forKey: "email")
+                    defaults.set(password, forKey: "password")
+                    
+                    let lichThucDonVC = self.storyboard?.instantiateViewController(withIdentifier: "lichthucdon") as! LichThucDonVC
+                    let nav = UINavigationController(rootViewController: lichThucDonVC)
+                    let revealController = self.revealViewController()
+                    revealController!.pushFrontViewController(nav, animated: true)
                     
                 } else {
                     self.view.hideToastActivity()
@@ -46,6 +94,9 @@ class LoginVC: UIViewController {
                     self.view.makeToast("Email hoặc mật khẩu không đúng", duration: 1.5, position: .bottom)
                 }
             }
+        } else {
+            self.view.hideToastActivity()
+            self.view.makeToast("Không được bỏ trống email / password", duration: 1.5, position: .bottom)
         }
     }
 }
