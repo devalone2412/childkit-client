@@ -27,17 +27,16 @@ class LichNau {
     var ten: String?
     var start_date: String
     var end_date: String
-    var thu2: [[String: String]]?
-    var thu3: [[String: String]]?
-    var thu4: [[String: String]]?
-    var thu5: [[String: String]]?
-    var thu6: [[String: String]]?
+    var thu2: [String: [String]]?
+    var thu3: [String: [String]]?
+    var thu4: [String: [String]]?
+    var thu5: [String: [String]]?
+    var thu6: [String: [String]]?
     var vote_number: String
     var vote_status: String
     var created_date: String
-    var last_modified: String
     
-    init(ten: String, start_date: String, end_date: String, thu2: [[String: String]], thu3: [[String: String]], thu4: [[String: String]], thu5: [[String: String]], thu6: [[String: String]], vote_number: String, vote_status: String, created_date: String, last_modified: String) {
+    init(ten: String, start_date: String, end_date: String, thu2: [String: [String]]?, thu3: [String: [String]]?, thu4: [String: [String]]?, thu5: [String: [String]]?, thu6: [String: [String]]?, vote_number: String, vote_status: String, created_date: String) {
         self.ten = ten
         self.start_date = start_date
         self.end_date = end_date
@@ -49,6 +48,5 @@ class LichNau {
         self.vote_number = vote_number
         self.vote_status = vote_status
         self.created_date = created_date
-        self.last_modified = last_modified
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import SWRevealViewController
 import ChameleonFramework
+import FirebaseDatabase
 
 class LichThucDonVC: UIViewController {
 
@@ -16,9 +17,17 @@ class LichThucDonVC: UIViewController {
     @IBOutlet weak var vietBinhLuanBtn: CornerButton!
     @IBOutlet weak var commentBtn: UIButton!
     @IBOutlet weak var periodInWeek: UILabel!
+    @IBOutlet weak var thuSC: UISegmentedControl!
     
     var dateStart: Date = Date.today().previous(.monday)
     var dateEnd: Date = Date.today().next(.sunday)
+    var listLichNau_Sorted = [LichNau]()
+    var thu: String = "Thứ 2"
+    var listMA = [MonAn]()
+    var buaSang = [MonAn]()
+    var buaTrua = [MonAn]()
+    var buaChieu = [MonAn]()
+    lazy var index = self.listLichNau_Sorted.count - 1
     
     lazy var dateStartText: String? = {
         let dateFormatter = DateFormatter()
@@ -48,7 +57,170 @@ class LichThucDonVC: UIViewController {
         lichTableView.dataSource = self
         configNav()
         updateView()
-        periodInWeek.text = "\(dateStartText!) - \(dateEndText!)"
+        getDataLichNau()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getDataLichNau()
+    }
+    
+    @IBAction func thuSCChange(_ sender: UISegmentedControl) {
+        getDataLichNau()
+    }
+    func getDataLichNau() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 25200)
+        dateFormatter.defaultDate = Date()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        
+        var listLichNau = [LichNau]()
+        
+        ref_TD.observe(.value) { (snapshot) in
+            self.listLichNau_Sorted.removeAll()
+            for data in snapshot.children.allObjects as! [DataSnapshot] {
+                let lichNauObjs = data.value as! [String: AnyObject]
+                let ten = lichNauObjs["ten"] as! String
+                let created_date = lichNauObjs["created_date"] as! String
+                let end_date = lichNauObjs["end_date"] as! String
+                let start_date = lichNauObjs["start_date"] as! String
+                let vote_number = lichNauObjs["vote_number"] as! String
+                let vote_status = lichNauObjs["vote_status"] as! String
+                let thu2 = lichNauObjs["Thứ 2"] as! [String: [String]]
+                let thu3 = lichNauObjs["Thứ 3"] as! [String: [String]]
+                let thu4 = lichNauObjs["Thứ 4"] as! [String: [String]]
+                let thu5 = lichNauObjs["Thứ 5"] as! [String: [String]]
+                let thu6 = lichNauObjs["Thứ 6"] as! [String: [String]]
+                
+                let lichNau = LichNau(ten: ten, start_date: start_date, end_date: end_date, thu2: thu2, thu3: thu3, thu4: thu4, thu5: thu5, thu6: thu6, vote_number: vote_number, vote_status: vote_status, created_date: created_date)
+                listLichNau.append(lichNau)
+            }
+            
+            self.listLichNau_Sorted = listLichNau.sorted(by: { (lichNau1, lichNau2) -> Bool in
+                return dateFormatter.date(from: lichNau1.start_date)?.compare(dateFormatter.date(from: lichNau2.start_date)!) == ComparisonResult.orderedAscending
+            })
+            
+            let dateFormatter2 = DateFormatter()
+            dateFormatter2.timeZone = TimeZone(secondsFromGMT: 25200)
+            dateFormatter2.defaultDate = Date()
+            dateFormatter2.dateFormat = "dd/MM"
+            
+            let lichNau = self.listLichNau_Sorted[self.index]
+            let start_date = dateFormatter2.string(from: dateFormatter.date(from: lichNau.start_date)!)
+            let end_date = dateFormatter2.string(from: dateFormatter.date(from: lichNau.end_date)!)
+            self.periodInWeek.text = "\(start_date) - \(end_date)"
+            
+            ref_MA_T.observe(.value) { (snapshot) in
+                self.listMA.removeAll()
+                for data in snapshot.children.allObjects as! [DataSnapshot] {
+                    let monAnObjs = data.value as! [String: AnyObject]
+                    let g = monAnObjs["G"] as! String
+                    let kCal = monAnObjs["Cal"] as! String
+                    let l = monAnObjs["L"] as! String
+                    let p = monAnObjs["P"] as! String
+                    let imageURL = monAnObjs["imageURL"] as! String
+                    let maCategory = monAnObjs["maCategory"] as! String
+                    let maMA = monAnObjs["maMA"] as! String
+                    let nguyenLieu = monAnObjs["nguyenlieu"] as! [[String: String]]
+                    let tenMA = monAnObjs["tenMA"] as! String
+                    let isChecked = false
+                    
+                    let monAn = MonAn(g: g, kCal: kCal, l: l, p: p, imageURL: imageURL, maCategory: maCategory, maMA: maMA, nguyenLieu: nguyenLieu, tenMA: tenMA, isChecked: isChecked)
+                    self.listMA.append(monAn)
+                }
+                
+                self.buaSang.removeAll()
+                self.buaTrua.removeAll()
+                self.buaChieu.removeAll()
+                switch self.thu {
+                case "Thứ 2":
+                    let maMABS = lichNau.thu2!["Bữa sáng"]
+                    let maMABT = lichNau.thu2!["Bữa trưa"]
+                    let maMABC = lichNau.thu2!["Bữa chiều"]
+                    
+                    self.buaSang = self.listMA.filter({ (monAn) -> Bool in
+                        return (maMABS?.contains(monAn.maMA))!
+                    })
+                    
+                    self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
+                        return (maMABT?.contains(monAn.maMA))!
+                    })
+                    
+                    self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
+                        return (maMABC?.contains(monAn.maMA))!
+                    })
+                case "Thứ 3":
+                    let maMABS = lichNau.thu3!["Bữa sáng"]
+                    let maMABT = lichNau.thu3!["Bữa trưa"]
+                    let maMABC = lichNau.thu3!["Bữa chiều"]
+                    
+                    self.buaSang = self.listMA.filter({ (monAn) -> Bool in
+                        return (maMABS?.contains(monAn.maMA))!
+                    })
+                    
+                    self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
+                        return (maMABT?.contains(monAn.maMA))!
+                    })
+                    
+                    self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
+                        return (maMABC?.contains(monAn.maMA))!
+                    })
+                case "Thứ 4":
+                    let maMABS = lichNau.thu4!["Bữa sáng"]
+                    let maMABT = lichNau.thu4!["Bữa trưa"]
+                    let maMABC = lichNau.thu4!["Bữa chiều"]
+                    
+                    self.buaSang = self.listMA.filter({ (monAn) -> Bool in
+                        return (maMABS?.contains(monAn.maMA))!
+                    })
+                    
+                    self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
+                        return (maMABT?.contains(monAn.maMA))!
+                    })
+                    
+                    self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
+                        return (maMABC?.contains(monAn.maMA))!
+                    })
+                case "Thứ 5":
+                    let maMABS = lichNau.thu5!["Bữa sáng"]
+                    let maMABT = lichNau.thu5!["Bữa trưa"]
+                    let maMABC = lichNau.thu5!["Bữa chiều"]
+                    
+                    self.buaSang = self.listMA.filter({ (monAn) -> Bool in
+                        return (maMABS?.contains(monAn.maMA))!
+                    })
+                    
+                    self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
+                        return (maMABT?.contains(monAn.maMA))!
+                    })
+                    
+                    self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
+                        return (maMABC?.contains(monAn.maMA))!
+                    })
+                case "Thứ 6":
+                    let maMABS = lichNau.thu6!["Bữa sáng"]
+                    let maMABT = lichNau.thu6!["Bữa trưa"]
+                    let maMABC = lichNau.thu6!["Bữa chiều"]
+                    
+                    self.buaSang = self.listMA.filter({ (monAn) -> Bool in
+                        return (maMABS?.contains(monAn.maMA))!
+                    })
+                    
+                    self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
+                        return (maMABT?.contains(monAn.maMA))!
+                    })
+                    
+                    self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
+                        return (maMABC?.contains(monAn.maMA))!
+                    })
+                default:
+                    return
+                }
+                
+                print(self.buaSang, self.buaTrua, self.buaChieu)
+                self.lichTableView.reloadData()
+            }
+        }
     }
     
     func updateView() {
@@ -130,29 +302,17 @@ class LichThucDonVC: UIViewController {
     }
     
     @IBAction func truocWasPressed(_ sender: CornerButton) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 25200)
-        dateFormatter.defaultDate = Date()
-        dateFormatter.dateFormat = "dd/MM"
-        //        let today = dateFormatter.date(from: dateFormatter.string(from: Date.today()))
-        dateStart = dateStart.previous(.monday)
-        dateEnd = dateEnd.previous(.sunday)
-        let start = dateFormatter.string(from: dateStart)
-        let end = dateFormatter.string(from: dateEnd)
-        periodInWeek.text = "\(start) - \(end)"
+        if index >= 0 {
+            index -= 1
+            getDataLichNau()
+        }
     }
     
     @IBAction func sauWasPressed(_ sender: CornerButton) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 25200)
-        dateFormatter.defaultDate = Date()
-        dateFormatter.dateFormat = "dd/MM"
-//        let today = dateFormatter.date(from: dateFormatter.string(from: Date.today()))
-        dateStart = dateStart.next(.monday)
-        dateEnd = dateEnd.next(.sunday)
-        let start = dateFormatter.string(from: dateStart)
-        let end = dateFormatter.string(from: dateEnd)
-        periodInWeek.text = "\(start) - \(end)"
+        if index <= listLichNau_Sorted.count - 1 {
+            index += 1
+            getDataLichNau()
+        }
     }
 }
 
@@ -195,28 +355,67 @@ extension LichThucDonVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 0
+            return buaSang.count
         case 1:
-            return 0
+            return buaTrua.count
         case 2:
-            return 0
-        default:
+            return buaChieu.count
+       default:
             return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = lichTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? LichCell
-//        switch indexPath.section {
-//        case 0:
-//            cell?.configure(tenMon: "Trứng cút chiên bơ xào tỏi", kCal: "50", protein: "24", lipit: "13", glucit: "20")
-//        case 1:
-//            cell?.configure(tenMon: "Hột vịt lộn rang me Tứ Xuyên", kCal: "50", protein: "24", lipit: "13", glucit: "20")
-//        case 2:
-//            cell?.configure(tenMon: "Trứng cút xào đậu phộng rang me", kCal: "50", protein: "24", lipit: "13", glucit: "20")
-//        default:
-//            return UITableViewCell()
-//        }
+        switch indexPath.section {
+        case 0:
+            DispatchQueue.global().async {
+                let url = URL(string: self.buaSang[indexPath.row].imageURL)!
+                let imageData = try! Data(contentsOf: url)
+                let tenMA = self.buaSang[indexPath.row].tenMA
+                let kCal = self.buaSang[indexPath.row].kCal!
+                let protein = self.buaSang[indexPath.row].p!
+                let lipit = self.buaSang[indexPath.row].l!
+                let glucit = self.buaSang[indexPath.row].g!
+                DispatchQueue.main.async {
+                    let image = UIImage(data: imageData)!
+                    cell?.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit)
+                }
+            }
+            return cell!
+        case 1:
+            DispatchQueue.global().async {
+                let url = URL(string: self.buaTrua[indexPath.row].imageURL)!
+                let imageData = try! Data(contentsOf: url)
+                let tenMA = self.buaTrua[indexPath.row].tenMA
+                let kCal = self.buaTrua[indexPath.row].kCal!
+                let protein = self.buaTrua[indexPath.row].p!
+                let lipit = self.buaTrua[indexPath.row].l!
+                let glucit = self.buaTrua[indexPath.row].g!
+                DispatchQueue.main.async {
+                    let image = UIImage(data: imageData)!
+                    cell?.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit)
+                }
+            }
+            return cell!
+        case 2:
+            DispatchQueue.global().async {
+                let url = URL(string: self.buaChieu[indexPath.row].imageURL)!
+                let imageData = try! Data(contentsOf: url)
+                let tenMA = self.buaChieu[indexPath.row].tenMA
+                let kCal = self.buaChieu[indexPath.row].kCal!
+                let protein = self.buaChieu[indexPath.row].p!
+                let lipit = self.buaChieu[indexPath.row].l!
+                let glucit = self.buaChieu[indexPath.row].g!
+                DispatchQueue.main.async {
+                    let image = UIImage(data: imageData)!
+                    cell?.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit)
+                }
+            }
+            return cell!
+        default:
+            return UITableViewCell()
+        }
         return UITableViewCell()
     }
     

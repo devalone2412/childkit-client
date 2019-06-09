@@ -24,6 +24,7 @@ class ChinhSuaLichVC: UIViewController {
     var monAnTheoBua = [MonAn]()
     var listMA = [MonAn]()
     var maMA = [[String]]()
+    var key: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,6 @@ class ChinhSuaLichVC: UIViewController {
     }
     
     func getDataMA() {
-        var key: String!
         switch thucDon {
         case "Thực đơn 1":
             key = defaults.object(forKey: "key_TD1") as? String
@@ -246,6 +246,8 @@ extension ChinhSuaLichVC: UITableViewDelegate, UITableViewDataSource {
     
     func deleteAction(indexPath: IndexPath) -> UIContextualAction {
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+            self.monAnTheoBua.remove(at: indexPath.row)
+            ref_TD_Vote.child(self.key).child("\(self.thu!)").child("\(self.bua)").updateChildValues(["\(indexPath.row)": ""])
             print("Deleted")
             completion(true)
         }
