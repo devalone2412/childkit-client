@@ -275,7 +275,7 @@ class LichThucDonVC: UIViewController {
                 "Thứ 4": [],
                 "Thứ 5": [],
                 "Thứ 6": [],
-                "vote_number": "",
+                "vote_number": "0",
                 "vote_status": "not vote",
                 "created_date": "\(today)"
                 ] as [String : Any]
@@ -289,7 +289,7 @@ class LichThucDonVC: UIViewController {
                 "Thứ 4": [],
                 "Thứ 5": [],
                 "Thứ 6": [],
-                "vote_number": "",
+                "vote_number": "0",
                 "vote_status": "not vote",
                 "created_date": "\(today)"
                 ] as [String : Any]
@@ -316,6 +316,8 @@ class LichThucDonVC: UIViewController {
     
     @IBAction func ghiChuWasPressed(_ sender: UIButton) {
         let ghiChuVC = (storyboard?.instantiateViewController(withIdentifier: "ghichu") as? GhiChuVC)!
+        ghiChuVC.maLich = maLich
+        ghiChuVC.thu = thu
         navigationController?.pushViewController(ghiChuVC, animated: true)
     }
     

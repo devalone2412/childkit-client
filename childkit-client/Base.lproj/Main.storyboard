@@ -162,6 +162,9 @@
                                     <segment title="Thực đơn 2"/>
                                 </segments>
                                 <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="thucDonChange:" destination="QUs-n2-UcR" eventType="valueChanged" id="lUY-vm-fpT"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="E8Z-0F-cfa">
                                 <rect key="frame" x="16" y="142" width="343" height="29"/>
@@ -179,6 +182,9 @@
                                     <segment title="Thứ 6"/>
                                 </segments>
                                 <color key="tintColor" red="0.90196078430000004" green="0.4941176471" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="thuChange:" destination="QUs-n2-UcR" eventType="valueChanged" id="WNn-UX-0Pe"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUz-eu-pIf">
                                 <rect key="frame" x="0.0" y="612" width="375" height="55"/>
@@ -303,6 +309,7 @@
                     <connections>
                         <outlet property="binhChonBtn" destination="OUz-eu-pIf" id="JAG-QD-knU"/>
                         <outlet property="danhSachVoteTableView" destination="dST-d9-ZTJ" id="p33-Tz-zUW"/>
+                        <outlet property="thucDonSC" destination="ATl-sb-qSE" id="Nu7-Q5-qDC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PPk-Kk-5cI" userLabel="First Responder" sceneMemberID="firstResponder"/>

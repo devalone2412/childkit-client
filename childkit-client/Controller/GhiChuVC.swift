@@ -10,11 +10,16 @@ import UIKit
 
 class GhiChuVC: UIViewController {
 
+    var maLich: String!
+    var thu: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        print(maLich!, thu!)
     }
+    
     @IBAction func sendWasPressed(_ sender: CornerButton) {
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
