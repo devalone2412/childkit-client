@@ -22,10 +22,13 @@ class SideMenuVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        loadFunc()
+//        loadFunc()
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadFunc()
+    }
     
     func loadFunc() {
         switch defaults.object(forKey: "quyen") as! String {
@@ -55,6 +58,13 @@ class SideMenuVC: UIViewController {
             xemLichDatTiec.isHidden = true
             bauChon.isHidden = true
             datTiec.isHidden = false
+            categoryMA.isHidden = true
+            nguyenLieu.isHidden = true
+        case "PH":
+            lichNauAn.isHidden = false
+            bauChon.isHidden = false
+            datTiec.isHidden = false
+            xemLichDatTiec.isHidden = true
             categoryMA.isHidden = true
             nguyenLieu.isHidden = true
         default:

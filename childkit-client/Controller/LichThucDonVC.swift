@@ -27,6 +27,7 @@ class LichThucDonVC: UIViewController {
     var buaSang = [MonAn]()
     var buaTrua = [MonAn]()
     var buaChieu = [MonAn]()
+    var maLich: String!
     lazy var index = self.listLichNau_Sorted.count - 1
     
     lazy var dateStartText: String? = {
@@ -56,16 +57,30 @@ class LichThucDonVC: UIViewController {
         lichTableView.delegate = self
         lichTableView.dataSource = self
         configNav()
-        updateView()
         getDataLichNau()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        updateView()
         getDataLichNau()
     }
     
     @IBAction func thuSCChange(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            thu = "Thứ 2"
+        case 1:
+            thu = "Thứ 3"
+        case 2:
+            thu = "Thứ 4"
+        case 3:
+            thu = "Thứ 5"
+        case 4:
+            thu = "Thứ 6"
+        default:
+            thu = "Thứ 2"
+        }
         getDataLichNau()
     }
     func getDataLichNau() {
@@ -79,6 +94,7 @@ class LichThucDonVC: UIViewController {
         ref_TD.observe(.value) { (snapshot) in
             self.listLichNau_Sorted.removeAll()
             for data in snapshot.children.allObjects as! [DataSnapshot] {
+                self.maLich = data.key
                 let lichNauObjs = data.value as! [String: AnyObject]
                 let ten = lichNauObjs["ten"] as! String
                 let created_date = lichNauObjs["created_date"] as! String
@@ -293,6 +309,8 @@ class LichThucDonVC: UIViewController {
     
     @IBAction func vietBinhLuanPressed(_ sender: CornerButton) {
         let binhLuanVC = (storyboard?.instantiateViewController(withIdentifier: "binhluan") as? BinhLuanVC)!
+        binhLuanVC.maLich = maLich
+        binhLuanVC.thu = thu
         navigationController?.pushViewController(binhLuanVC, animated: true)
     }
     

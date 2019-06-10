@@ -40,6 +40,7 @@
 		3DBA85C9229A47A50060ADDE /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA85C8229A47A50060ADDE /* CategoryCell.swift */; };
 		3DBA85CB229A4C9D0060ADDE /* FoodByCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA85CA229A4C9D0060ADDE /* FoodByCategoryVC.swift */; };
 		3DBA85CD229A53A80060ADDE /* ThemMonAn2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA85CC229A53A80060ADDE /* ThemMonAn2VC.swift */; };
+		3DF2480C22AE304C000D8C89 /* BinhLuan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF2480B22AE304C000D8C89 /* BinhLuan.swift */; };
 		3DFA0E3422A9F67A00CFF802 /* LichTuanSauVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA0E3322A9F67900CFF802 /* LichTuanSauVC.swift */; };
 		3DFA0E3622AA02ED00CFF802 /* iOSDropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DFA0E3522AA02ED00CFF802 /* iOSDropDown.framework */; };
 		3DFA0E3822AA078600CFF802 /* MonAn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA0E3722AA078600CFF802 /* MonAn.swift */; };
@@ -84,6 +85,7 @@
 		3DBA85C8229A47A50060ADDE /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		3DBA85CA229A4C9D0060ADDE /* FoodByCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodByCategoryVC.swift; sourceTree = "<group>"; };
 		3DBA85CC229A53A80060ADDE /* ThemMonAn2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemMonAn2VC.swift; sourceTree = "<group>"; };
+		3DF2480B22AE304C000D8C89 /* BinhLuan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BinhLuan.swift; path = "childkit-client/Utils/BinhLuan.swift"; sourceTree = SOURCE_ROOT; };
 		3DFA0E3322A9F67900CFF802 /* LichTuanSauVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LichTuanSauVC.swift; sourceTree = "<group>"; };
 		3DFA0E3522AA02ED00CFF802 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DFA0E3722AA078600CFF802 /* MonAn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MonAn.swift; path = "childkit-client/Controller/MonAn.swift"; sourceTree = SOURCE_ROOT; };
@@ -148,6 +150,7 @@
 				3DFA0E3722AA078600CFF802 /* MonAn.swift */,
 				3DFA0E3D22AA194F00CFF802 /* Category.swift */,
 				3D998F4E22AABB940049BB48 /* LichNau.swift */,
+				3DF2480B22AE304C000D8C89 /* BinhLuan.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				2546D725229791B2007ED0A2 /* LichCell.swift in Sources */,
 				3D9429A22299986E009F1976 /* CornerTableView.swift in Sources */,
 				25ECED8E2297C6E400F3693B /* BorderView.swift in Sources */,
+				3DF2480C22AE304C000D8C89 /* BinhLuan.swift in Sources */,
 				2518BE4E22963037002121E6 /* CornerButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
