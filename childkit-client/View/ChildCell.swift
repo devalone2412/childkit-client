@@ -18,8 +18,8 @@ class ChildCell: UITableViewCell {
     func configure(image: UIImage = UIImage(named: "user")!, tenTre: String, ngaySinh: String, lop: String) {
         imageKid.image = image
         self.tenTre.text = tenTre
-        self.ngaySinh.text = ngaySinh
-        self.lop.text = lop
+        self.ngaySinh.text = "Ngày sinh: \(ngaySinh)"
+        self.lop.text = "Lớp: \(lop)"
     }
     @IBAction func selectWasPressed(_ sender: UIButton) {
         if (sender.currentImage?.isEqual(UIImage(named: "unchecked")))! {

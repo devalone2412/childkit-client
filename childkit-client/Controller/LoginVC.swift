@@ -13,7 +13,7 @@ import FirebaseDatabase
 
 class LoginVC: UIViewController {
     
-
+    
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
@@ -25,11 +25,15 @@ class LoginVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if Auth.auth().currentUser != nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let lichThucDonVC = storyboard.instantiateViewController(withIdentifier: "lichthucdon") as! LichThucDonVC
-            let nav = UINavigationController(rootViewController: lichThucDonVC)
-            let revealController = self.revealViewController()
-            revealController?.pushFrontViewController(nav, animated: true)
+            if defaults.object(forKey: "quyen") != nil {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let lichThucDonVC = storyboard.instantiateViewController(withIdentifier: "lichthucdon") as! LichThucDonVC
+                let nav = UINavigationController(rootViewController: lichThucDonVC)
+                let revealController = self.revealViewController()
+                revealController?.pushFrontViewController(nav, animated: true)
+            } else {
+                print("Chưa có quyền")
+            }
         } else {
             if let emailData = defaults.object(forKey: "email") as? String, let passwordData = defaults.object(forKey: "password") as? String {
                 emailTF.text = emailData
@@ -62,6 +66,24 @@ class LoginVC: UIViewController {
                             if user.uid == phObjs["uid"] as! String {
                                 quyen = (phObjs["quyen"] as? String)!
                                 defaults.set(quyen, forKey: "quyen")
+                                defaults.set(email, forKey: "email")
+                                defaults.set(password, forKey: "password")
+                                
+                                if quyen != "" {
+                                    if defaults.object(forKey: "quyen") as! String != "GV" {
+                                        let lichThucDonVC = self.storyboard?.instantiateViewController(withIdentifier: "lichthucdon") as! LichThucDonVC
+                                        let nav = UINavigationController(rootViewController: lichThucDonVC)
+                                        let revealController = self.revealViewController()
+                                        revealController!.pushFrontViewController(nav, animated: true)
+                                    } else {
+                                        let datTiecGV = self.storyboard?.instantiateViewController(withIdentifier: "datTiecGV") as! DatTiecGVVC
+                                        let nav = UINavigationController(rootViewController: datTiecGV)
+                                        let revealController = self.revealViewController()
+                                        revealController!.pushFrontViewController(nav, animated: true)
+                                    }
+                                } else {
+                                    print("Chưa có quyền")
+                                }
                                 break
                             }
                         }
@@ -74,19 +96,23 @@ class LoginVC: UIViewController {
                                 if user.uid == nvObjs["uid"] as! String {
                                     quyen = (nvObjs["quyen"] as? String)!
                                     defaults.set(quyen, forKey: "quyen")
+                                    defaults.set(email, forKey: "email")
+                                    defaults.set(password, forKey: "password")
+                                    
+                                    if quyen != "" {
+                                        let lichThucDonVC = self.storyboard?.instantiateViewController(withIdentifier: "lichthucdon") as! LichThucDonVC
+                                        let nav = UINavigationController(rootViewController: lichThucDonVC)
+                                        let revealController = self.revealViewController()
+                                        revealController!.pushFrontViewController(nav, animated: true)
+                                    } else {
+                                        print("Chưa có quyền")
+                                    }
                                     break
                                 }
                             }
                         })
                     }
                     
-                    defaults.set(email, forKey: "email")
-                    defaults.set(password, forKey: "password")
-                    
-                    let lichThucDonVC = self.storyboard?.instantiateViewController(withIdentifier: "lichthucdon") as! LichThucDonVC
-                    let nav = UINavigationController(rootViewController: lichThucDonVC)
-                    let revealController = self.revealViewController()
-                    revealController!.pushFrontViewController(nav, animated: true)
                     
                 } else {
                     self.view.hideToastActivity()

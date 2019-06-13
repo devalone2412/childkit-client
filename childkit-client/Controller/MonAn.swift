@@ -19,6 +19,7 @@ class MonAn {
     var nguyenLieu: [[String: String]]!
     var tenMA: String
     var isChecked: Bool
+    var gia = ""
     
     init(g: String, kCal: String, l: String, p: String, imageURL: String, maCategory: String, maMA: String, nguyenLieu: [[String: String]], tenMA: String, isChecked: Bool) {
         self.g = g;

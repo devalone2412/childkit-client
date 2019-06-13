@@ -55,8 +55,10 @@ class ThemMonAnVC: UIViewController, UISearchBarDelegate {
                 let nguyenLieu = monAnObjs["nguyenlieu"] as! [[String: String]]
                 let tenMA = monAnObjs["tenMA"] as! String
                 let isChecked = false
+                let gia = monAnObjs["gia"] as! String
                 
                 let monAn = MonAn(g: g, kCal: kCal, l: l, p: p, imageURL: imageURL, maCategory: maCategory, maMA: maMA, nguyenLieu: nguyenLieu, tenMA: tenMA, isChecked: isChecked)
+                monAn.gia = gia
                 self.listMA.append(monAn)
                 
             }
@@ -162,6 +164,7 @@ extension ThemMonAnVC: UITableViewDataSource, UITableViewDelegate {
                 let protein = self.filteredData[indexPath.row].p!
                 let lipit = self.filteredData[indexPath.row].l!
                 let glucit = self.filteredData[indexPath.row].g!
+                let giaMA = self.filteredData[indexPath.row].gia
                 
                 DispatchQueue.main.async {
                     if self.listMA[indexPath.row].isChecked {
@@ -170,7 +173,7 @@ extension ThemMonAnVC: UITableViewDataSource, UITableViewDelegate {
                         cell?.accessoryType = .none
                     }
                     let image = UIImage(data: imageData)!
-                    cell?.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit)
+                    cell?.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit, giaMA: giaMA)
                 }
             } else {
                 let url = URL(string: self.listMA[indexPath.row].imageURL)!
@@ -180,6 +183,7 @@ extension ThemMonAnVC: UITableViewDataSource, UITableViewDelegate {
                 let protein = self.listMA[indexPath.row].p!
                 let lipit = self.listMA[indexPath.row].l!
                 let glucit = self.listMA[indexPath.row].g!
+                let giaMA = self.listMA[indexPath.row].gia
                 DispatchQueue.main.async {
                     if self.listMA[indexPath.row].isChecked {
                         cell?.accessoryType = .checkmark
@@ -187,7 +191,7 @@ extension ThemMonAnVC: UITableViewDataSource, UITableViewDelegate {
                         cell?.accessoryType = .none
                     }
                     let image = UIImage(data: imageData)!
-                    cell?.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit)
+                    cell?.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit, giaMA: giaMA)
                 }
             }
         }

@@ -54,10 +54,10 @@ class SideMenuVC: UIViewController {
             categoryMA.isHidden = true
             nguyenLieu.isHidden = false
         case "GV":
-            lichNauAn.isHidden = true
+            lichNauAn.isHidden = false
             xemLichDatTiec.isHidden = true
             bauChon.isHidden = true
-            datTiec.isHidden = false
+            datTiec.isHidden = true
             categoryMA.isHidden = true
             nguyenLieu.isHidden = true
         case "PH":
@@ -67,6 +67,7 @@ class SideMenuVC: UIViewController {
             xemLichDatTiec.isHidden = true
             categoryMA.isHidden = true
             nguyenLieu.isHidden = true
+            
         default:
             return
         }
@@ -88,6 +89,8 @@ class SideMenuVC: UIViewController {
     @IBAction func bauChonBtnWasPressed(_ sender: UIButton) {
     }
     @IBAction func datTiecBtnWasPressed(_ sender: UIButton) {
+    }
+    @IBAction func datTiecGVBtnWasPressed(_ sender: UIButton) {
     }
     @IBAction func categoryMonAn(_ sender: UIButton) {
     }

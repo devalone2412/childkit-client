@@ -15,7 +15,6 @@ class LichThucDonVC: UIViewController {
 
     @IBOutlet weak var lichTableView: UITableView!
     @IBOutlet weak var vietBinhLuanBtn: CornerButton!
-    @IBOutlet weak var commentBtn: UIButton!
     @IBOutlet weak var periodInWeek: UILabel!
     @IBOutlet weak var thuSC: UISegmentedControl!
     
@@ -58,12 +57,51 @@ class LichThucDonVC: UIViewController {
         lichTableView.dataSource = self
         configNav()
         getDataLichNau()
+        checkTDVote()
+        updateView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateView()
         getDataLichNau()
+    }
+    
+    func checkTDVote() {
+        if let keyVote1 = defaults.object(forKey: "keyTDVote1"), let keyVote2 = defaults.object(forKey: "keyTDVote2") {
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = TimeZone(secondsFromGMT: 25200)
+            dateFormatter.defaultDate = Date()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            
+            ref_TD_Vote.child(keyVote1 as! String).observeSingleEvent(of: .value) { (snapshot) in
+                let data_lichVote1 = snapshot.value as! [String: AnyObject]
+                
+                if dateFormatter.date(from: dateFormatter.string(from: Date.today()))! == dateFormatter.date(from: data_lichVote1["end_date"] as! String) {
+                    
+                    ref_TD_Vote.child(keyVote2 as! String).observeSingleEvent(of: .value, with: { (snapshot) in
+                        let data_lichVote2 = snapshot.value as! [String: AnyObject]
+                        let number_vote1 = Int(data_lichVote1["vote_number"] as! String)
+                        let number_vote2 = Int(data_lichVote2["vote_number"] as! String)
+                        
+                        if number_vote1! > number_vote2! {
+                            ref_TD.child(keyVote1 as! String).setValue(data_lichVote1)
+                            ref_TD_Vote.child(keyVote1 as! String).removeValue()
+                            ref_TD_Vote.child(keyVote2 as! String).removeValue()
+                            defaults.removeObject(forKey: "keyTDVote1")
+                            defaults.removeObject(forKey: "keyTDVote2")
+                        } else {
+                            ref_TD.child(keyVote2 as! String).setValue(data_lichVote2)
+                            ref_TD_Vote.child(keyVote1 as! String).removeValue()
+                            ref_TD_Vote.child(keyVote2 as! String).removeValue()
+                            defaults.removeObject(forKey: "keyTDVote1")
+                            defaults.removeObject(forKey: "keyTDVote2")
+                        }
+                    })
+                }
+                
+            }
+        }
     }
     
     @IBAction func thuSCChange(_ sender: UISegmentedControl) {
@@ -121,128 +159,130 @@ class LichThucDonVC: UIViewController {
             dateFormatter2.defaultDate = Date()
             dateFormatter2.dateFormat = "dd/MM"
             
-            let lichNau = self.listLichNau_Sorted[self.index]
-            let start_date = dateFormatter2.string(from: dateFormatter.date(from: lichNau.start_date)!)
-            let end_date = dateFormatter2.string(from: dateFormatter.date(from: lichNau.end_date)!)
-            self.periodInWeek.text = "\(start_date) - \(end_date)"
-            
-            ref_MA_T.observe(.value) { (snapshot) in
-                self.listMA.removeAll()
-                for data in snapshot.children.allObjects as! [DataSnapshot] {
-                    let monAnObjs = data.value as! [String: AnyObject]
-                    let g = monAnObjs["G"] as! String
-                    let kCal = monAnObjs["Cal"] as! String
-                    let l = monAnObjs["L"] as! String
-                    let p = monAnObjs["P"] as! String
-                    let imageURL = monAnObjs["imageURL"] as! String
-                    let maCategory = monAnObjs["maCategory"] as! String
-                    let maMA = monAnObjs["maMA"] as! String
-                    let nguyenLieu = monAnObjs["nguyenlieu"] as! [[String: String]]
-                    let tenMA = monAnObjs["tenMA"] as! String
-                    let isChecked = false
-                    
-                    let monAn = MonAn(g: g, kCal: kCal, l: l, p: p, imageURL: imageURL, maCategory: maCategory, maMA: maMA, nguyenLieu: nguyenLieu, tenMA: tenMA, isChecked: isChecked)
-                    self.listMA.append(monAn)
-                }
+            if self.index < self.listLichNau_Sorted.count && self.index >= 0 {
+                let lichNau = self.listLichNau_Sorted[self.index]
+                let start_date = dateFormatter2.string(from: dateFormatter.date(from: lichNau.start_date)!)
+                let end_date = dateFormatter2.string(from: dateFormatter.date(from: lichNau.end_date)!)
+                self.periodInWeek.text = "\(start_date) - \(end_date)"
                 
-                self.buaSang.removeAll()
-                self.buaTrua.removeAll()
-                self.buaChieu.removeAll()
-                switch self.thu {
-                case "Thứ 2":
-                    let maMABS = lichNau.thu2!["Bữa sáng"]
-                    let maMABT = lichNau.thu2!["Bữa trưa"]
-                    let maMABC = lichNau.thu2!["Bữa chiều"]
+                ref_MA_T.observe(.value) { (snapshot) in
+                    self.listMA.removeAll()
+                    for data in snapshot.children.allObjects as! [DataSnapshot] {
+                        let monAnObjs = data.value as! [String: AnyObject]
+                        let g = monAnObjs["G"] as! String
+                        let kCal = monAnObjs["Cal"] as! String
+                        let l = monAnObjs["L"] as! String
+                        let p = monAnObjs["P"] as! String
+                        let imageURL = monAnObjs["imageURL"] as! String
+                        let maCategory = monAnObjs["maCategory"] as! String
+                        let maMA = monAnObjs["maMA"] as! String
+                        let nguyenLieu = monAnObjs["nguyenlieu"] as! [[String: String]]
+                        let tenMA = monAnObjs["tenMA"] as! String
+                        let isChecked = false
+                        
+                        let monAn = MonAn(g: g, kCal: kCal, l: l, p: p, imageURL: imageURL, maCategory: maCategory, maMA: maMA, nguyenLieu: nguyenLieu, tenMA: tenMA, isChecked: isChecked)
+                        self.listMA.append(monAn)
+                    }
                     
-                    self.buaSang = self.listMA.filter({ (monAn) -> Bool in
-                        return (maMABS?.contains(monAn.maMA))!
-                    })
+                    self.buaSang.removeAll()
+                    self.buaTrua.removeAll()
+                    self.buaChieu.removeAll()
+                    switch self.thu {
+                    case "Thứ 2":
+                        let maMABS = lichNau.thu2!["Bữa sáng"]
+                        let maMABT = lichNau.thu2!["Bữa trưa"]
+                        let maMABC = lichNau.thu2!["Bữa chiều"]
+                        
+                        self.buaSang = self.listMA.filter({ (monAn) -> Bool in
+                            return (maMABS?.contains(monAn.maMA))!
+                        })
+                        
+                        self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
+                            return (maMABT?.contains(monAn.maMA))!
+                        })
+                        
+                        self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
+                            return (maMABC?.contains(monAn.maMA))!
+                        })
+                    case "Thứ 3":
+                        let maMABS = lichNau.thu3!["Bữa sáng"]
+                        let maMABT = lichNau.thu3!["Bữa trưa"]
+                        let maMABC = lichNau.thu3!["Bữa chiều"]
+                        
+                        self.buaSang = self.listMA.filter({ (monAn) -> Bool in
+                            return (maMABS?.contains(monAn.maMA))!
+                        })
+                        
+                        self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
+                            return (maMABT?.contains(monAn.maMA))!
+                        })
+                        
+                        self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
+                            return (maMABC?.contains(monAn.maMA))!
+                        })
+                    case "Thứ 4":
+                        let maMABS = lichNau.thu4!["Bữa sáng"]
+                        let maMABT = lichNau.thu4!["Bữa trưa"]
+                        let maMABC = lichNau.thu4!["Bữa chiều"]
+                        
+                        self.buaSang = self.listMA.filter({ (monAn) -> Bool in
+                            return (maMABS?.contains(monAn.maMA))!
+                        })
+                        
+                        self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
+                            return (maMABT?.contains(monAn.maMA))!
+                        })
+                        
+                        self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
+                            return (maMABC?.contains(monAn.maMA))!
+                        })
+                    case "Thứ 5":
+                        let maMABS = lichNau.thu5!["Bữa sáng"]
+                        let maMABT = lichNau.thu5!["Bữa trưa"]
+                        let maMABC = lichNau.thu5!["Bữa chiều"]
+                        
+                        self.buaSang = self.listMA.filter({ (monAn) -> Bool in
+                            return (maMABS?.contains(monAn.maMA))!
+                        })
+                        
+                        self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
+                            return (maMABT?.contains(monAn.maMA))!
+                        })
+                        
+                        self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
+                            return (maMABC?.contains(monAn.maMA))!
+                        })
+                    case "Thứ 6":
+                        let maMABS = lichNau.thu6!["Bữa sáng"]
+                        let maMABT = lichNau.thu6!["Bữa trưa"]
+                        let maMABC = lichNau.thu6!["Bữa chiều"]
+                        
+                        self.buaSang = self.listMA.filter({ (monAn) -> Bool in
+                            return (maMABS?.contains(monAn.maMA))!
+                        })
+                        
+                        self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
+                            return (maMABT?.contains(monAn.maMA))!
+                        })
+                        
+                        self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
+                            return (maMABC?.contains(monAn.maMA))!
+                        })
+                    default:
+                        return
+                    }
                     
-                    self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
-                        return (maMABT?.contains(monAn.maMA))!
-                    })
-                    
-                    self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
-                        return (maMABC?.contains(monAn.maMA))!
-                    })
-                case "Thứ 3":
-                    let maMABS = lichNau.thu3!["Bữa sáng"]
-                    let maMABT = lichNau.thu3!["Bữa trưa"]
-                    let maMABC = lichNau.thu3!["Bữa chiều"]
-                    
-                    self.buaSang = self.listMA.filter({ (monAn) -> Bool in
-                        return (maMABS?.contains(monAn.maMA))!
-                    })
-                    
-                    self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
-                        return (maMABT?.contains(monAn.maMA))!
-                    })
-                    
-                    self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
-                        return (maMABC?.contains(monAn.maMA))!
-                    })
-                case "Thứ 4":
-                    let maMABS = lichNau.thu4!["Bữa sáng"]
-                    let maMABT = lichNau.thu4!["Bữa trưa"]
-                    let maMABC = lichNau.thu4!["Bữa chiều"]
-                    
-                    self.buaSang = self.listMA.filter({ (monAn) -> Bool in
-                        return (maMABS?.contains(monAn.maMA))!
-                    })
-                    
-                    self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
-                        return (maMABT?.contains(monAn.maMA))!
-                    })
-                    
-                    self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
-                        return (maMABC?.contains(monAn.maMA))!
-                    })
-                case "Thứ 5":
-                    let maMABS = lichNau.thu5!["Bữa sáng"]
-                    let maMABT = lichNau.thu5!["Bữa trưa"]
-                    let maMABC = lichNau.thu5!["Bữa chiều"]
-                    
-                    self.buaSang = self.listMA.filter({ (monAn) -> Bool in
-                        return (maMABS?.contains(monAn.maMA))!
-                    })
-                    
-                    self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
-                        return (maMABT?.contains(monAn.maMA))!
-                    })
-                    
-                    self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
-                        return (maMABC?.contains(monAn.maMA))!
-                    })
-                case "Thứ 6":
-                    let maMABS = lichNau.thu6!["Bữa sáng"]
-                    let maMABT = lichNau.thu6!["Bữa trưa"]
-                    let maMABC = lichNau.thu6!["Bữa chiều"]
-                    
-                    self.buaSang = self.listMA.filter({ (monAn) -> Bool in
-                        return (maMABS?.contains(monAn.maMA))!
-                    })
-                    
-                    self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
-                        return (maMABT?.contains(monAn.maMA))!
-                    })
-                    
-                    self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
-                        return (maMABC?.contains(monAn.maMA))!
-                    })
-                default:
-                    return
+                    print(self.buaSang, self.buaTrua, self.buaChieu)
+                    self.lichTableView.reloadData()
                 }
-                
-                print(self.buaSang, self.buaTrua, self.buaChieu)
-                self.lichTableView.reloadData()
             }
         }
     }
     
     func updateView() {
         if defaults.object(forKey: "quyen") as! String != "PH" {
+            print("Đã update view")
             vietBinhLuanBtn.isHidden = true
-            commentBtn.isHidden = true
         }
     }
     
@@ -312,13 +352,6 @@ class LichThucDonVC: UIViewController {
         binhLuanVC.maLich = maLich
         binhLuanVC.thu = thu
         navigationController?.pushViewController(binhLuanVC, animated: true)
-    }
-    
-    @IBAction func ghiChuWasPressed(_ sender: UIButton) {
-        let ghiChuVC = (storyboard?.instantiateViewController(withIdentifier: "ghichu") as? GhiChuVC)!
-        ghiChuVC.maLich = maLich
-        ghiChuVC.thu = thu
-        navigationController?.pushViewController(ghiChuVC, animated: true)
     }
     
     @IBAction func truocWasPressed(_ sender: CornerButton) {

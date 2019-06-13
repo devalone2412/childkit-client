@@ -3,6 +3,7 @@ PODS:
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
+  - DatePickerDialog (2.0)
   - Firebase/Auth (6.1.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.1.0)
@@ -80,6 +81,7 @@ PODS:
 DEPENDENCIES:
   - BTNavigationDropdownMenu
   - ChameleonFramework/Swift
+  - DatePickerDialog
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -92,6 +94,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BTNavigationDropdownMenu
     - ChameleonFramework
+    - DatePickerDialog
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -112,6 +115,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   BTNavigationDropdownMenu: ba3a26fdb6a56c4721c31df8a0875106c259663a
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  DatePickerDialog: 5e1c24d9fe6506cd45dbc573eed7b0a251b1c09d
   Firebase: 8d77bb33624ae9b62d745d82ec023de5f70f7e4f
   FirebaseAnalytics: 629301c2b9925f3537d4093a17a72751ae5b7084
   FirebaseAuth: 4281d6d98a90881e00710fa8d9e37c2ccdfc7d80
@@ -129,6 +133,6 @@ SPEC CHECKSUMS:
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
   Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
-PODFILE CHECKSUM: 31ff8b885e42472271dc117bce678d822b6e39c5
+PODFILE CHECKSUM: 82819d49578eadd3ae959fb8de1400f9d6b57679
 
 COCOAPODS: 1.7.0
