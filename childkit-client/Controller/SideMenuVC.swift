@@ -18,6 +18,8 @@ class SideMenuVC: UIViewController {
     @IBOutlet weak var datTiec: UIButton!
     @IBOutlet weak var categoryMA: UIButton!
     @IBOutlet weak var nguyenLieu: UIButton!
+    @IBOutlet weak var datTiecGV: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,6 +39,7 @@ class SideMenuVC: UIViewController {
             xemLichDatTiec.isHidden = false
             bauChon.isHidden = true
             datTiec.isHidden = true
+            datTiecGV.isHidden = true
             categoryMA.isHidden = false
             nguyenLieu.isHidden = true
         case "NVB":
@@ -44,6 +47,7 @@ class SideMenuVC: UIViewController {
             xemLichDatTiec.isHidden = false
             bauChon.isHidden = true
             datTiec.isHidden = true
+            datTiecGV.isHidden = true
             categoryMA.isHidden = true
             nguyenLieu.isHidden = true
         case "NVK":
@@ -51,6 +55,7 @@ class SideMenuVC: UIViewController {
             xemLichDatTiec.isHidden = true
             bauChon.isHidden = true
             datTiec.isHidden = true
+            datTiecGV.isHidden = true
             categoryMA.isHidden = true
             nguyenLieu.isHidden = false
         case "GV":
@@ -58,12 +63,14 @@ class SideMenuVC: UIViewController {
             xemLichDatTiec.isHidden = true
             bauChon.isHidden = true
             datTiec.isHidden = true
+            datTiecGV.isHidden = false
             categoryMA.isHidden = true
             nguyenLieu.isHidden = true
         case "PH":
             lichNauAn.isHidden = false
             bauChon.isHidden = false
             datTiec.isHidden = false
+            datTiecGV.isHidden = true
             xemLichDatTiec.isHidden = true
             categoryMA.isHidden = true
             nguyenLieu.isHidden = true

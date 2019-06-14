@@ -29,6 +29,14 @@
 		25ECED9B2297E62900F3693B /* VoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ECED9A2297E62900F3693B /* VoteCell.swift */; };
 		3D14EA4622B0F82C00A116E6 /* NhanVien.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D14EA4522B0F82C00A116E6 /* NhanVien.swift */; };
 		3D21B31622AFDD5800F33ADB /* Tre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D21B31522AFDD5800F33ADB /* Tre.swift */; };
+		3D26C64322B3791B0021C9C8 /* XemThucDonDatTiec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D26C64222B3791B0021C9C8 /* XemThucDonDatTiec.swift */; };
+		3D26C64622B380170021C9C8 /* YeuCauGVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D26C64422B380170021C9C8 /* YeuCauGVCell.swift */; };
+		3D26C64722B380170021C9C8 /* YeuCauPHCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D26C64522B380170021C9C8 /* YeuCauPHCell.swift */; };
+		3D26C64922B380480021C9C8 /* YeuCauPH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D26C64822B380480021C9C8 /* YeuCauPH.swift */; };
+		3D26C64B22B380860021C9C8 /* YeuCauGV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D26C64A22B380860021C9C8 /* YeuCauGV.swift */; };
+		3D26C64D22B380BA0021C9C8 /* BorderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D26C64C22B380BA0021C9C8 /* BorderImageView.swift */; };
+		3D26C64F22B3882F0021C9C8 /* MenuDatTiecCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D26C64E22B3882F0021C9C8 /* MenuDatTiecCell.swift */; };
+		3D26C65122B388F70021C9C8 /* ChiTietYeuCauDatTiecVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D26C65022B388F70021C9C8 /* ChiTietYeuCauDatTiecVC.swift */; };
 		3D2C68E322A66ABB00AC8E7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D2C68E222A66ABB00AC8E7A /* GoogleService-Info.plist */; };
 		3D2C68E522A672BD00AC8E7A /* ConfigDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2C68E422A672BD00AC8E7A /* ConfigDatabase.swift */; };
 		3D79563622A90242005C84CA /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79563522A90242005C84CA /* DateExt.swift */; };
@@ -75,6 +83,14 @@
 		25ECED9A2297E62900F3693B /* VoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteCell.swift; sourceTree = "<group>"; };
 		3D14EA4522B0F82C00A116E6 /* NhanVien.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NhanVien.swift; path = "childkit-client/Utils/NhanVien.swift"; sourceTree = SOURCE_ROOT; };
 		3D21B31522AFDD5800F33ADB /* Tre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Tre.swift; path = "childkit-client/Utils/Tre.swift"; sourceTree = SOURCE_ROOT; };
+		3D26C64222B3791B0021C9C8 /* XemThucDonDatTiec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XemThucDonDatTiec.swift; sourceTree = "<group>"; };
+		3D26C64422B380170021C9C8 /* YeuCauGVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YeuCauGVCell.swift; sourceTree = "<group>"; };
+		3D26C64522B380170021C9C8 /* YeuCauPHCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YeuCauPHCell.swift; sourceTree = "<group>"; };
+		3D26C64822B380480021C9C8 /* YeuCauPH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YeuCauPH.swift; sourceTree = "<group>"; };
+		3D26C64A22B380860021C9C8 /* YeuCauGV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YeuCauGV.swift; sourceTree = "<group>"; };
+		3D26C64C22B380BA0021C9C8 /* BorderImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderImageView.swift; sourceTree = "<group>"; };
+		3D26C64E22B3882F0021C9C8 /* MenuDatTiecCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuDatTiecCell.swift; sourceTree = "<group>"; };
+		3D26C65022B388F70021C9C8 /* ChiTietYeuCauDatTiecVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChiTietYeuCauDatTiecVC.swift; sourceTree = "<group>"; };
 		3D2C68E222A66ABB00AC8E7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D2C68E422A672BD00AC8E7A /* ConfigDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigDatabase.swift; sourceTree = "<group>"; };
 		3D79563522A90242005C84CA /* DateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
@@ -114,6 +130,7 @@
 		2518BE4922962FA6002121E6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3D26C65022B388F70021C9C8 /* ChiTietYeuCauDatTiecVC.swift */,
 				2529C70A2296238D00887EAF /* LoginVC.swift */,
 				2546D72222978785007ED0A2 /* LichThucDonVC.swift */,
 				259762802297989E00F9A058 /* ChinhSuaLichVC.swift */,
@@ -127,6 +144,7 @@
 				3DBA85CA229A4C9D0060ADDE /* FoodByCategoryVC.swift */,
 				3DBA85CC229A53A80060ADDE /* ThemMonAn2VC.swift */,
 				3DFA0E3322A9F67900CFF802 /* LichTuanSauVC.swift */,
+				3D26C64222B3791B0021C9C8 /* XemThucDonDatTiec.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -134,6 +152,9 @@
 		2518BE4A22962FB1002121E6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3D26C64E22B3882F0021C9C8 /* MenuDatTiecCell.swift */,
+				3D26C64422B380170021C9C8 /* YeuCauGVCell.swift */,
+				3D26C64522B380170021C9C8 /* YeuCauPHCell.swift */,
 				2546D724229791B2007ED0A2 /* LichCell.swift */,
 				259762822297A37F00F9A058 /* ChinhSuaLichCell.swift */,
 				259762882297AC6B00F9A058 /* MonAnCell.swift */,
@@ -148,12 +169,14 @@
 		2518BE4B22962FB6002121E6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3D26C64822B380480021C9C8 /* YeuCauPH.swift */,
 				3DFA0E3722AA078600CFF802 /* MonAn.swift */,
 				3DFA0E3D22AA194F00CFF802 /* Category.swift */,
 				3D998F4E22AABB940049BB48 /* LichNau.swift */,
 				3DF2480B22AE304C000D8C89 /* BinhLuan.swift */,
 				3D21B31522AFDD5800F33ADB /* Tre.swift */,
 				3D14EA4522B0F82C00A116E6 /* NhanVien.swift */,
+				3D26C64A22B380860021C9C8 /* YeuCauGV.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -161,6 +184,7 @@
 		2518BE4C22963017002121E6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3D26C64C22B380BA0021C9C8 /* BorderImageView.swift */,
 				2518BE4D22963037002121E6 /* CornerButton.swift */,
 				25ECED8B2297C69F00F3693B /* BorderButton.swift */,
 				25ECED8D2297C6E400F3693B /* BorderView.swift */,
@@ -361,6 +385,7 @@
 				3DBA85CB229A4C9D0060ADDE /* FoodByCategoryVC.swift in Sources */,
 				25ECED882297BDC400F3693B /* BinhLuanVC.swift in Sources */,
 				25ECED902297CBE400F3693B /* BinhLuanCell.swift in Sources */,
+				3D26C64322B3791B0021C9C8 /* XemThucDonDatTiec.swift in Sources */,
 				3D21B31622AFDD5800F33ADB /* Tre.swift in Sources */,
 				3D9429A42299A1E1009F1976 /* DatTiecGVVC.swift in Sources */,
 				2529C70B2296238D00887EAF /* LoginVC.swift in Sources */,
@@ -371,9 +396,12 @@
 				3DFA0E3422A9F67A00CFF802 /* LichTuanSauVC.swift in Sources */,
 				3DBA85C9229A47A50060ADDE /* CategoryCell.swift in Sources */,
 				2597628B2297B92000F9A058 /* SideMenuVC.swift in Sources */,
+				3D26C64922B380480021C9C8 /* YeuCauPH.swift in Sources */,
 				259762892297AC6B00F9A058 /* MonAnCell.swift in Sources */,
+				3D26C64D22B380BA0021C9C8 /* BorderImageView.swift in Sources */,
 				3DBA85C7229A45180060ADDE /* CategoryVC.swift in Sources */,
 				3D94299C22998B76009F1976 /* ChildCell.swift in Sources */,
+				3D26C64B22B380860021C9C8 /* YeuCauGV.swift in Sources */,
 				3D94299E22998C79009F1976 /* DatTiecPHVC.swift in Sources */,
 				259762872297A8C100F9A058 /* ThemMonAnVC.swift in Sources */,
 				259762812297989E00F9A058 /* ChinhSuaLichVC.swift in Sources */,
@@ -382,7 +410,11 @@
 				3D79563622A90242005C84CA /* DateExt.swift in Sources */,
 				2546D725229791B2007ED0A2 /* LichCell.swift in Sources */,
 				3D9429A22299986E009F1976 /* CornerTableView.swift in Sources */,
+				3D26C64622B380170021C9C8 /* YeuCauGVCell.swift in Sources */,
+				3D26C64F22B3882F0021C9C8 /* MenuDatTiecCell.swift in Sources */,
 				25ECED8E2297C6E400F3693B /* BorderView.swift in Sources */,
+				3D26C64722B380170021C9C8 /* YeuCauPHCell.swift in Sources */,
+				3D26C65122B388F70021C9C8 /* ChiTietYeuCauDatTiecVC.swift in Sources */,
 				3DF2480C22AE304C000D8C89 /* BinhLuan.swift in Sources */,
 				2518BE4E22963037002121E6 /* CornerButton.swift in Sources */,
 			);
