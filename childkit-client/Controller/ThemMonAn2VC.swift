@@ -84,7 +84,7 @@ class ThemMonAn2VC: UIViewController, UISearchBarDelegate {
                 let maCategory = categoryObjs["maCategory"] as! String
                 let tenCategory = categoryObjs["tenCategory"] as! String
                 
-                let category = Category(imageURL: imageURL, maCategory: maCategory, tenCategory: tenCategory)
+                let category = Category(imageURL: imageURL, maCategory: maCategory, tenCategory: tenCategory, keyCategory: data.key)
                 self.listCategory.append(category)
             }
             var listCate = [String]()

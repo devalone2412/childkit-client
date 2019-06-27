@@ -68,38 +68,40 @@ class LichThucDonVC: UIViewController {
     }
     
     func checkTDVote() {
-        if let keyVote1 = defaults.object(forKey: "keyTDVote1"), let keyVote2 = defaults.object(forKey: "keyTDVote2") {
-            let dateFormatter = DateFormatter()
-            dateFormatter.timeZone = TimeZone(secondsFromGMT: 25200)
-            dateFormatter.defaultDate = Date()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            
-            ref_TD_Vote.child(keyVote1 as! String).observeSingleEvent(of: .value) { (snapshot) in
-                let data_lichVote1 = snapshot.value as! [String: AnyObject]
+        if defaults.object(forKey: "quyen") as! String == "BT" {
+            if let keyVote1 = defaults.object(forKey: "keyTDVote1"), let keyVote2 = defaults.object(forKey: "keyTDVote2") {
+                let dateFormatter = DateFormatter()
+                dateFormatter.timeZone = TimeZone(secondsFromGMT: 25200)
+                dateFormatter.defaultDate = Date()
+                dateFormatter.dateFormat = "dd/MM/yyyy"
                 
-                if dateFormatter.date(from: dateFormatter.string(from: Date.today()))! == dateFormatter.date(from: data_lichVote1["end_date"] as! String) {
+                ref_TD_Vote.child(keyVote1 as! String).observeSingleEvent(of: .value) { (snapshot) in
+                    let data_lichVote1 = snapshot.value as! [String: AnyObject]
                     
-                    ref_TD_Vote.child(keyVote2 as! String).observeSingleEvent(of: .value, with: { (snapshot) in
-                        let data_lichVote2 = snapshot.value as! [String: AnyObject]
-                        let number_vote1 = Int(data_lichVote1["vote_number"] as! String)
-                        let number_vote2 = Int(data_lichVote2["vote_number"] as! String)
+                    if dateFormatter.date(from: dateFormatter.string(from: Date.today()))! > dateFormatter.date(from: data_lichVote1["end_date"] as! String)! {
                         
-                        if number_vote1! > number_vote2! {
-                            ref_TD.child(keyVote1 as! String).setValue(data_lichVote1)
-                            ref_TD_Vote.child(keyVote1 as! String).removeValue()
-                            ref_TD_Vote.child(keyVote2 as! String).removeValue()
-                            defaults.removeObject(forKey: "keyTDVote1")
-                            defaults.removeObject(forKey: "keyTDVote2")
-                        } else {
-                            ref_TD.child(keyVote2 as! String).setValue(data_lichVote2)
-                            ref_TD_Vote.child(keyVote1 as! String).removeValue()
-                            ref_TD_Vote.child(keyVote2 as! String).removeValue()
-                            defaults.removeObject(forKey: "keyTDVote1")
-                            defaults.removeObject(forKey: "keyTDVote2")
-                        }
-                    })
+                        ref_TD_Vote.child(keyVote2 as! String).observeSingleEvent(of: .value, with: { (snapshot) in
+                            let data_lichVote2 = snapshot.value as! [String: AnyObject]
+                            let number_vote1 = Int(data_lichVote1["vote_number"] as! String)
+                            let number_vote2 = Int(data_lichVote2["vote_number"] as! String)
+                            
+                            if number_vote1! > number_vote2! {
+                                ref_TD.child(keyVote1 as! String).setValue(data_lichVote1)
+                                ref_TD_Vote.child(keyVote1 as! String).removeValue()
+                                ref_TD_Vote.child(keyVote2 as! String).removeValue()
+                                defaults.removeObject(forKey: "keyTDVote1")
+                                defaults.removeObject(forKey: "keyTDVote2")
+                            } else {
+                                ref_TD.child(keyVote2 as! String).setValue(data_lichVote2)
+                                ref_TD_Vote.child(keyVote1 as! String).removeValue()
+                                ref_TD_Vote.child(keyVote2 as! String).removeValue()
+                                defaults.removeObject(forKey: "keyTDVote1")
+                                defaults.removeObject(forKey: "keyTDVote2")
+                            }
+                        })
+                    }
+                    
                 }
-                
             }
         }
     }
@@ -422,14 +424,14 @@ extension LichThucDonVC: UITableViewDelegate, UITableViewDataSource {
         let cell = lichTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? LichCell
         switch indexPath.section {
         case 0:
+            let tenMA = self.buaSang[indexPath.row].tenMA
+            let kCal = self.buaSang[indexPath.row].kCal!
+            let protein = self.buaSang[indexPath.row].p!
+            let lipit = self.buaSang[indexPath.row].l!
+            let glucit = self.buaSang[indexPath.row].g!
             DispatchQueue.global().async {
                 let url = URL(string: self.buaSang[indexPath.row].imageURL)!
                 let imageData = try! Data(contentsOf: url)
-                let tenMA = self.buaSang[indexPath.row].tenMA
-                let kCal = self.buaSang[indexPath.row].kCal!
-                let protein = self.buaSang[indexPath.row].p!
-                let lipit = self.buaSang[indexPath.row].l!
-                let glucit = self.buaSang[indexPath.row].g!
                 DispatchQueue.main.async {
                     let image = UIImage(data: imageData)!
                     cell?.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit)
@@ -437,14 +439,14 @@ extension LichThucDonVC: UITableViewDelegate, UITableViewDataSource {
             }
             return cell!
         case 1:
+            let tenMA = self.buaTrua[indexPath.row].tenMA
+            let kCal = self.buaTrua[indexPath.row].kCal!
+            let protein = self.buaTrua[indexPath.row].p!
+            let lipit = self.buaTrua[indexPath.row].l!
+            let glucit = self.buaTrua[indexPath.row].g!
             DispatchQueue.global().async {
                 let url = URL(string: self.buaTrua[indexPath.row].imageURL)!
                 let imageData = try! Data(contentsOf: url)
-                let tenMA = self.buaTrua[indexPath.row].tenMA
-                let kCal = self.buaTrua[indexPath.row].kCal!
-                let protein = self.buaTrua[indexPath.row].p!
-                let lipit = self.buaTrua[indexPath.row].l!
-                let glucit = self.buaTrua[indexPath.row].g!
                 DispatchQueue.main.async {
                     let image = UIImage(data: imageData)!
                     cell?.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit)
@@ -452,14 +454,14 @@ extension LichThucDonVC: UITableViewDelegate, UITableViewDataSource {
             }
             return cell!
         case 2:
+            let tenMA = self.buaChieu[indexPath.row].tenMA
+            let kCal = self.buaChieu[indexPath.row].kCal!
+            let protein = self.buaChieu[indexPath.row].p!
+            let lipit = self.buaChieu[indexPath.row].l!
+            let glucit = self.buaChieu[indexPath.row].g!
             DispatchQueue.global().async {
                 let url = URL(string: self.buaChieu[indexPath.row].imageURL)!
                 let imageData = try! Data(contentsOf: url)
-                let tenMA = self.buaChieu[indexPath.row].tenMA
-                let kCal = self.buaChieu[indexPath.row].kCal!
-                let protein = self.buaChieu[indexPath.row].p!
-                let lipit = self.buaChieu[indexPath.row].l!
-                let glucit = self.buaChieu[indexPath.row].g!
                 DispatchQueue.main.async {
                     let image = UIImage(data: imageData)!
                     cell?.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit)

@@ -219,14 +219,14 @@ extension ChinhSuaLichVC: UITableViewDelegate, UITableViewDataSource {
         if !monAnTheoBua.isEmpty {
             print("Đã vào")
             let cell = self.danhSachMA.dequeueReusableCell(withIdentifier: "modifyFoodCell", for: indexPath) as? ChinhSuaLichCell
+            let tenMA = self.monAnTheoBua[indexPath.row].tenMA
+            let kCal = self.monAnTheoBua[indexPath.row].kCal!
+            let protein = self.monAnTheoBua[indexPath.row].p!
+            let lipit = self.monAnTheoBua[indexPath.row].l!
+            let glucit = self.monAnTheoBua[indexPath.row].g!
             DispatchQueue.global().async {
                 let url = URL(string: self.monAnTheoBua[indexPath.row].imageURL)!
                 let imageData = try! Data(contentsOf: url)
-                let tenMA = self.monAnTheoBua[indexPath.row].tenMA
-                let kCal = self.monAnTheoBua[indexPath.row].kCal!
-                let protein = self.monAnTheoBua[indexPath.row].p!
-                let lipit = self.monAnTheoBua[indexPath.row].l!
-                let glucit = self.monAnTheoBua[indexPath.row].g!
                 DispatchQueue.main.async {
                     let image = UIImage(data: imageData)!
                     cell?.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit)

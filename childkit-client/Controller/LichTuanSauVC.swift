@@ -32,6 +32,7 @@ class LichTuanSauVC: UIViewController {
         configNav()
         danhSachMA.delegate = self
         danhSachMA.dataSource = self
+        getDataLich()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -55,8 +56,6 @@ class LichTuanSauVC: UIViewController {
             defaults.removeObject(forKey: "key_TD2")
             defaults.removeObject(forKey: "start_date")
         }
-        
-        getDataLich()
     }
     
     func getDataLich() {
@@ -145,6 +144,8 @@ class LichTuanSauVC: UIViewController {
 
     @IBAction func thucDonChanged(_ sender: UISegmentedControl) {
         thucDon = itemsThucDon[sender.selectedSegmentIndex]
+        thu = "Thứ 2"
+        thuSC.selectedSegmentIndex = 0
         getDataLich()
         print(thucDon)
     }
@@ -201,15 +202,16 @@ extension LichTuanSauVC: UITableViewDelegate, UITableViewDataSource {
         let cell = danhSachMA.dequeueReusableCell(withIdentifier: "voteCell", for: indexPath) as! VoteCell
         switch indexPath.section {
         case 0:
-            if !buaSang.isEmpty {
+            print(buaSang.count)
+            if buaSang.count != 0 {
+                let tenMA = self.buaSang[indexPath.row].tenMA
+                let kCal = self.buaSang[indexPath.row].kCal!
+                let protein = self.buaSang[indexPath.row].p!
+                let lipit = self.buaSang[indexPath.row].l!
+                let glucit = self.buaSang[indexPath.row].g!
                 DispatchQueue.global().async {
                     let url = URL(string: self.buaSang[indexPath.row].imageURL)!
                     let imageData = try! Data(contentsOf: url)
-                    let tenMA = self.buaSang[indexPath.row].tenMA
-                    let kCal = self.buaSang[indexPath.row].kCal!
-                    let protein = self.buaSang[indexPath.row].p!
-                    let lipit = self.buaSang[indexPath.row].l!
-                    let glucit = self.buaSang[indexPath.row].g!
                     DispatchQueue.main.async {
                         let image = UIImage(data: imageData)!
                         cell.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit)
@@ -220,15 +222,16 @@ extension LichTuanSauVC: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
         case 1:
-            if !buaTrua.isEmpty {
+            print(buaTrua.count)
+            if buaTrua.count != 0 {
+                let tenMA = self.buaTrua[indexPath.row].tenMA
+                let kCal = self.buaTrua[indexPath.row].kCal!
+                let protein = self.buaTrua[indexPath.row].p!
+                let lipit = self.buaTrua[indexPath.row].l!
+                let glucit = self.buaTrua[indexPath.row].g!
                 DispatchQueue.global().async {
                     let url = URL(string: self.buaTrua[indexPath.row].imageURL)!
                     let imageData = try! Data(contentsOf: url)
-                    let tenMA = self.buaTrua[indexPath.row].tenMA
-                    let kCal = self.buaTrua[indexPath.row].kCal!
-                    let protein = self.buaTrua[indexPath.row].p!
-                    let lipit = self.buaTrua[indexPath.row].l!
-                    let glucit = self.buaTrua[indexPath.row].g!
                     DispatchQueue.main.async {
                         let image = UIImage(data: imageData)!
                         cell.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit)
@@ -239,15 +242,16 @@ extension LichTuanSauVC: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
         case 2:
-            if !buaChieu.isEmpty {
+            print(buaChieu.count)
+            if buaChieu.count != 0 {
+                let tenMA = self.buaChieu[indexPath.row].tenMA
+                let kCal = self.buaChieu[indexPath.row].kCal!
+                let protein = self.buaChieu[indexPath.row].p!
+                let lipit = self.buaChieu[indexPath.row].l!
+                let glucit = self.buaChieu[indexPath.row].g!
                 DispatchQueue.global().async {
                     let url = URL(string: self.buaChieu[indexPath.row].imageURL)!
                     let imageData = try! Data(contentsOf: url)
-                    let tenMA = self.buaChieu[indexPath.row].tenMA
-                    let kCal = self.buaChieu[indexPath.row].kCal!
-                    let protein = self.buaChieu[indexPath.row].p!
-                    let lipit = self.buaChieu[indexPath.row].l!
-                    let glucit = self.buaChieu[indexPath.row].g!
                     DispatchQueue.main.async {
                         let image = UIImage(data: imageData)!
                         cell.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit)

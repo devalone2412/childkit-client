@@ -26,11 +26,17 @@ class LoginVC: UIViewController {
         super.viewWillAppear(animated)
         if Auth.auth().currentUser != nil {
             if defaults.object(forKey: "quyen") != nil {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let lichThucDonVC = storyboard.instantiateViewController(withIdentifier: "lichthucdon") as! LichThucDonVC
-                let nav = UINavigationController(rootViewController: lichThucDonVC)
-                let revealController = self.revealViewController()
-                revealController?.pushFrontViewController(nav, animated: true)
+                if defaults.object(forKey: "quyen") as! String != "NVK" {
+                    let lichThucDonVC = self.storyboard?.instantiateViewController(withIdentifier: "lichthucdon") as! LichThucDonVC
+                    let nav = UINavigationController(rootViewController: lichThucDonVC)
+                    let revealController = self.revealViewController()
+                    revealController!.pushFrontViewController(nav, animated: true)
+                } else {
+                    let nguyenLieuVC = self.storyboard?.instantiateViewController(withIdentifier: "nguyenLieu") as! NguyenLieuVC
+                    let nav = UINavigationController(rootViewController: nguyenLieuVC)
+                    let revealController = self.revealViewController()
+                    revealController!.pushFrontViewController(nav, animated: true)
+                }
             } else {
                 print("Chưa có quyền")
             }
@@ -70,17 +76,10 @@ class LoginVC: UIViewController {
                                 defaults.set(password, forKey: "password")
                                 
                                 if quyen != "" {
-                                    if defaults.object(forKey: "quyen") as! String != "GV" {
-                                        let lichThucDonVC = self.storyboard?.instantiateViewController(withIdentifier: "lichthucdon") as! LichThucDonVC
-                                        let nav = UINavigationController(rootViewController: lichThucDonVC)
-                                        let revealController = self.revealViewController()
-                                        revealController!.pushFrontViewController(nav, animated: true)
-                                    } else {
-                                        let datTiecGV = self.storyboard?.instantiateViewController(withIdentifier: "datTiecGV") as! DatTiecGVVC
-                                        let nav = UINavigationController(rootViewController: datTiecGV)
-                                        let revealController = self.revealViewController()
-                                        revealController!.pushFrontViewController(nav, animated: true)
-                                    }
+                                    let lichThucDonVC = self.storyboard?.instantiateViewController(withIdentifier: "lichthucdon") as! LichThucDonVC
+                                    let nav = UINavigationController(rootViewController: lichThucDonVC)
+                                    let revealController = self.revealViewController()
+                                    revealController!.pushFrontViewController(nav, animated: true)
                                 } else {
                                     print("Chưa có quyền")
                                 }
@@ -100,10 +99,17 @@ class LoginVC: UIViewController {
                                     defaults.set(password, forKey: "password")
                                     
                                     if quyen != "" {
-                                        let lichThucDonVC = self.storyboard?.instantiateViewController(withIdentifier: "lichthucdon") as! LichThucDonVC
-                                        let nav = UINavigationController(rootViewController: lichThucDonVC)
-                                        let revealController = self.revealViewController()
-                                        revealController!.pushFrontViewController(nav, animated: true)
+                                        if quyen != "NVK" {
+                                            let lichThucDonVC = self.storyboard?.instantiateViewController(withIdentifier: "lichthucdon") as! LichThucDonVC
+                                            let nav = UINavigationController(rootViewController: lichThucDonVC)
+                                            let revealController = self.revealViewController()
+                                            revealController!.pushFrontViewController(nav, animated: true)
+                                        } else {
+                                            let nguyenLieuVC = self.storyboard?.instantiateViewController(withIdentifier: "nguyenLieu") as! NguyenLieuVC
+                                            let nav = UINavigationController(rootViewController: nguyenLieuVC)
+                                            let revealController = self.revealViewController()
+                                            revealController!.pushFrontViewController(nav, animated: true)
+                                        }
                                     } else {
                                         print("Chưa có quyền")
                                     }

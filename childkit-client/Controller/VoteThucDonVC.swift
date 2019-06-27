@@ -48,7 +48,7 @@ class VoteThucDonVC: UIViewController {
                 binhChonBtn.setTitle("\(thucDon)", for: .normal)
                 binhChonBtn.backgroundColor = #colorLiteral(red: 0.7411764706, green: 0.7647058824, blue: 0.7803921569, alpha: 1)
             } else {
-                print("Đã vào  ")
+                print("Đã vào 2")
                 binhChonBtn.setTitle("Bình chọn", for: .normal)
                 binhChonBtn.backgroundColor = #colorLiteral(red: 0.9280361533, green: 0.5689504147, blue: 0.1711549461, alpha: 1)
             }
@@ -56,145 +56,168 @@ class VoteThucDonVC: UIViewController {
     }
     
     func getDataLich() {
-        ref_MA_T.observe(.value) { (snapshot) in
-            self.listMA.removeAll()
+        ref_TD_Vote.observe(.value) { (snapshot) in
+            var count = 0;
             for data in snapshot.children.allObjects as! [DataSnapshot] {
-                let monAnObjs = data.value as! [String: AnyObject]
-                let g = monAnObjs["G"] as! String
-                let kCal = monAnObjs["Cal"] as! String
-                let l = monAnObjs["L"] as! String
-                let p = monAnObjs["P"] as! String
-                let imageURL = monAnObjs["imageURL"] as! String
-                let maCategory = monAnObjs["maCategory"] as! String
-                let maMA = monAnObjs["maMA"] as! String
-                let nguyenLieu = monAnObjs["nguyenlieu"] as! [[String: String]]
-                let tenMA = monAnObjs["tenMA"] as! String
-                let isChecked = false
-                
-                let monAn = MonAn(g: g, kCal: kCal, l: l, p: p, imageURL: imageURL, maCategory: maCategory, maMA: maMA, nguyenLieu: nguyenLieu, tenMA: tenMA, isChecked: isChecked)
-                self.listMA.append(monAn)
+                let td_voteObjs = data.value as! [String: AnyObject]
+                if td_voteObjs["vote_status"] as! String == "voting" {
+                    count += 1;
+                }
             }
             
-            var key: String!
-            
-            if let keyTDVote1 = defaults.object(forKey: "keyTDVote1"), let keyTDVote2 = defaults.object(forKey: "keyTDVote2") {
-                switch self.thucDon {
-                case "Thực đơn 1":
-                    key = keyTDVote1 as? String
-                case "Thực đơn 2":
-                    key = keyTDVote2 as? String
-                default:
-                    return
-                }
-                
-                ref_TD_Vote.observe(.value, with: { (snapshot) in
-                    self.voteNumber_TD.removeAll()
+            if count == 2 {
+                ref_MA_T.observe(.value) { (snapshot) in
+                    self.listMA.removeAll()
                     for data in snapshot.children.allObjects as! [DataSnapshot] {
-                        let lichVoteObjs = data.value as! [String: AnyObject]
-                        self.voteNumber_TD.append(lichVoteObjs["vote_number"] as! String)
-                    }
-                })
-                
-                ref_TD_Vote.child(key).child("\(self.thu)").observe(.value) { (snapshot) in
-                    self.maMA.removeAll()
-                    self.buaSang.removeAll()
-                    self.buaTrua.removeAll()
-                    self.buaChieu.removeAll()
-                    for data in snapshot.children.allObjects as! [DataSnapshot] {
-                        let data = data.value as! [String]
-                        self.maMA.append(data)
-                    }
-                    print(self.maMA)
-                    if self.maMA.count < 2 && self.maMA.count > 0 {
-                        self.buaSang = self.listMA.filter({ (monAn) -> Bool in
-                            self.maMA[0].contains(monAn.maMA)
-                        })
-                    } else if self.maMA.count < 3 && self.maMA.count > 0 {
-                        self.buaSang = self.listMA.filter({ (monAn) -> Bool in
-                            self.maMA[0].contains(monAn.maMA)
-                        })
-                        self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
-                            self.maMA[1].contains(monAn.maMA)
-                        })
-                    } else if self.maMA.count == 3 && self.maMA.count > 0 {
+                        let monAnObjs = data.value as! [String: AnyObject]
+                        let g = monAnObjs["G"] as! String
+                        let kCal = monAnObjs["Cal"] as! String
+                        let l = monAnObjs["L"] as! String
+                        let p = monAnObjs["P"] as! String
+                        let imageURL = monAnObjs["imageURL"] as! String
+                        let maCategory = monAnObjs["maCategory"] as! String
+                        let maMA = monAnObjs["maMA"] as! String
+                        let nguyenLieu = monAnObjs["nguyenlieu"] as! [[String: String]]
+                        let tenMA = monAnObjs["tenMA"] as! String
+                        let isChecked = false
                         
-                        self.buaSang = self.listMA.filter({ (monAn) -> Bool in
-                            self.maMA[1].contains(monAn.maMA)
+                        let monAn = MonAn(g: g, kCal: kCal, l: l, p: p, imageURL: imageURL, maCategory: maCategory, maMA: maMA, nguyenLieu: nguyenLieu, tenMA: tenMA, isChecked: isChecked)
+                        self.listMA.append(monAn)
+                    }
+                    
+                    var key: String!
+                    
+                    if let keyTDVote1 = defaults.object(forKey: "keyTDVote1"), let keyTDVote2 = defaults.object(forKey: "keyTDVote2") {
+                        switch self.thucDon {
+                        case "Thực đơn 1":
+                            key = keyTDVote1 as? String
+                        case "Thực đơn 2":
+                            key = keyTDVote2 as? String
+                        default:
+                            return
+                        }
+                        
+                        ref_TD_Vote.observe(.value, with: { (snapshot) in
+                            self.voteNumber_TD.removeAll()
+                            for data in snapshot.children.allObjects as! [DataSnapshot] {
+                                let lichVoteObjs = data.value as! [String: AnyObject]
+                                self.voteNumber_TD.append(lichVoteObjs["vote_number"] as! String)
+                            }
                         })
                         
-                        self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
-                            self.maMA[2].contains(monAn.maMA)
-                        })
+                        ref_TD_Vote.child(key).child("\(self.thu)").observe(.value) { (snapshot) in
+                            self.maMA.removeAll()
+                            self.buaSang.removeAll()
+                            self.buaTrua.removeAll()
+                            self.buaChieu.removeAll()
+                            for data in snapshot.children.allObjects as! [DataSnapshot] {
+                                let data = data.value as! [String]
+                                self.maMA.append(data)
+                            }
+                            print(self.maMA)
+                            if self.maMA.count < 2 && self.maMA.count > 0 {
+                                self.buaSang = self.listMA.filter({ (monAn) -> Bool in
+                                    self.maMA[0].contains(monAn.maMA)
+                                })
+                            } else if self.maMA.count < 3 && self.maMA.count > 0 {
+                                self.buaSang = self.listMA.filter({ (monAn) -> Bool in
+                                    self.maMA[0].contains(monAn.maMA)
+                                })
+                                self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
+                                    self.maMA[1].contains(monAn.maMA)
+                                })
+                            } else if self.maMA.count == 3 && self.maMA.count > 0 {
+                                
+                                self.buaSang = self.listMA.filter({ (monAn) -> Bool in
+                                    self.maMA[1].contains(monAn.maMA)
+                                })
+                                
+                                self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
+                                    self.maMA[2].contains(monAn.maMA)
+                                })
+                                
+                                self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
+                                    self.maMA[0].contains(monAn.maMA)
+                                })
+                            }
+                            self.danhSachVoteTableView.reloadData()
+                        }
+                    } else {
                         
-                        self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
-                            self.maMA[0].contains(monAn.maMA)
+                        ref_TD_Vote.observeSingleEvent(of: .value, with: { (snapshot) in
+                            for data in snapshot.children.allObjects as! [DataSnapshot] {
+                                self.keyLich.append(data.key)
+                                if self.keyLich.count == 2 {
+                                    break
+                                }
+                            }
+                            
+                            if !self.keyLich.isEmpty {
+                                defaults.set(self.keyLich[0], forKey: "keyTDVote1")
+                                defaults.set(self.keyLich[1], forKey: "keyTDVote2")
+                                
+                                switch self.thucDon {
+                                case "Thực đơn 1":
+                                    key = defaults.object(forKey: "keyTDVote1") as? String
+                                case "Thực đơn 2":
+                                    key = defaults.object(forKey: "keyTDVote2") as? String
+                                default:
+                                    return
+                                }
+                                
+                                ref_TD_Vote.child(key).child("\(self.thu)").observe(.value) { (snapshot) in
+                                    self.maMA.removeAll()
+                                    self.buaSang.removeAll()
+                                    self.buaTrua.removeAll()
+                                    self.buaChieu.removeAll()
+                                    for data in snapshot.children.allObjects as! [DataSnapshot] {
+                                        let data = data.value as! [String]
+                                        self.maMA.append(data)
+                                    }
+                                    print(self.maMA)
+                                    if self.maMA.count < 2 && self.maMA.count > 0 {
+                                        self.buaSang = self.listMA.filter({ (monAn) -> Bool in
+                                            self.maMA[0].contains(monAn.maMA)
+                                        })
+                                    } else if self.maMA.count < 3 && self.maMA.count > 0 {
+                                        self.buaSang = self.listMA.filter({ (monAn) -> Bool in
+                                            self.maMA[0].contains(monAn.maMA)
+                                        })
+                                        self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
+                                            self.maMA[1].contains(monAn.maMA)
+                                        })
+                                    } else if self.maMA.count == 3 && self.maMA.count > 0 {
+                                        
+                                        self.buaSang = self.listMA.filter({ (monAn) -> Bool in
+                                            self.maMA[1].contains(monAn.maMA)
+                                        })
+                                        
+                                        self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
+                                            self.maMA[2].contains(monAn.maMA)
+                                        })
+                                        
+                                        self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
+                                            self.maMA[0].contains(monAn.maMA)
+                                        })
+                                    }
+                                    self.danhSachVoteTableView.reloadData()
+                                }
+                            } else {
+                                self.binhChonBtn.isHidden = true
+                            }
+                            
                         })
                     }
-                    self.danhSachVoteTableView.reloadData()
+                    
                 }
             } else {
-                
-                ref_TD_Vote.observeSingleEvent(of: .value, with: { (snapshot) in
-                    for data in snapshot.children.allObjects as! [DataSnapshot] {
-                        self.keyLich.append(data.key)
-                        if self.keyLich.count == 2 {
-                            break
-                        }
-                    }
-                    
-                    defaults.set(self.keyLich[0], forKey: "keyTDVote1")
-                    defaults.set(self.keyLich[1], forKey: "keyTDVote2")
-                    
-                    switch self.thucDon {
-                    case "Thực đơn 1":
-                        key = defaults.object(forKey: "keyTDVote1") as? String
-                    case "Thực đơn 2":
-                        key = defaults.object(forKey: "keyTDVote2") as? String
-                    default:
-                        return
-                    }
-                    
-                    ref_TD_Vote.child(key).child("\(self.thu)").observe(.value) { (snapshot) in
-                        self.maMA.removeAll()
-                        self.buaSang.removeAll()
-                        self.buaTrua.removeAll()
-                        self.buaChieu.removeAll()
-                        for data in snapshot.children.allObjects as! [DataSnapshot] {
-                            let data = data.value as! [String]
-                            self.maMA.append(data)
-                        }
-                        print(self.maMA)
-                        if self.maMA.count < 2 && self.maMA.count > 0 {
-                            self.buaSang = self.listMA.filter({ (monAn) -> Bool in
-                                self.maMA[0].contains(monAn.maMA)
-                            })
-                        } else if self.maMA.count < 3 && self.maMA.count > 0 {
-                            self.buaSang = self.listMA.filter({ (monAn) -> Bool in
-                                self.maMA[0].contains(monAn.maMA)
-                            })
-                            self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
-                                self.maMA[1].contains(monAn.maMA)
-                            })
-                        } else if self.maMA.count == 3 && self.maMA.count > 0 {
-                            
-                            self.buaSang = self.listMA.filter({ (monAn) -> Bool in
-                                self.maMA[1].contains(monAn.maMA)
-                            })
-                            
-                            self.buaTrua = self.listMA.filter({ (monAn) -> Bool in
-                                self.maMA[2].contains(monAn.maMA)
-                            })
-                            
-                            self.buaChieu = self.listMA.filter({ (monAn) -> Bool in
-                                self.maMA[0].contains(monAn.maMA)
-                            })
-                        }
-                        self.danhSachVoteTableView.reloadData()
-                    }
-                    
-                })
+                self.buaSang.removeAll()
+                self.buaTrua.removeAll()
+                self.buaChieu.removeAll()
+                self.binhChonBtn.isHidden = true
+                count = 0;
+                self.danhSachVoteTableView.reloadData()
             }
-            
         }
     }
     
@@ -203,7 +226,6 @@ class VoteThucDonVC: UIViewController {
             defaults.set("Đã vote", forKey: "status_vote")
             if thucDon == "Thực đơn 1" {
                 var vote_number = Int(voteNumber_TD[0])
-                print(vote_number)
                 vote_number! = vote_number! + 1
                 ref_TD_Vote.child(defaults.object(forKey: "keyTDVote1") as! String).updateChildValues(["vote_number": "\(vote_number!)"])
                 thucDonSC.isEnabled = false
@@ -300,14 +322,15 @@ extension VoteThucDonVC: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             if !buaSang.isEmpty {
+                let tenMA = self.buaSang[indexPath.row].tenMA
+                let kCal = self.buaSang[indexPath.row].kCal!
+                let protein = self.buaSang[indexPath.row].p!
+                let lipit = self.buaSang[indexPath.row].l!
+                let glucit = self.buaSang[indexPath.row].g!
                 DispatchQueue.global().async {
                     let url = URL(string: self.buaSang[indexPath.row].imageURL)!
                     let imageData = try! Data(contentsOf: url)
-                    let tenMA = self.buaSang[indexPath.row].tenMA
-                    let kCal = self.buaSang[indexPath.row].kCal!
-                    let protein = self.buaSang[indexPath.row].p!
-                    let lipit = self.buaSang[indexPath.row].l!
-                    let glucit = self.buaSang[indexPath.row].g!
+                    
                     DispatchQueue.main.async {
                         let image = UIImage(data: imageData)!
                         cell.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit)
@@ -319,14 +342,14 @@ extension VoteThucDonVC: UITableViewDelegate, UITableViewDataSource {
             }
         case 1:
             if !buaTrua.isEmpty {
+                let tenMA = self.buaTrua[indexPath.row].tenMA
+                let kCal = self.buaTrua[indexPath.row].kCal!
+                let protein = self.buaTrua[indexPath.row].p!
+                let lipit = self.buaTrua[indexPath.row].l!
+                let glucit = self.buaTrua[indexPath.row].g!
                 DispatchQueue.global().async {
                     let url = URL(string: self.buaTrua[indexPath.row].imageURL)!
                     let imageData = try! Data(contentsOf: url)
-                    let tenMA = self.buaTrua[indexPath.row].tenMA
-                    let kCal = self.buaTrua[indexPath.row].kCal!
-                    let protein = self.buaTrua[indexPath.row].p!
-                    let lipit = self.buaTrua[indexPath.row].l!
-                    let glucit = self.buaTrua[indexPath.row].g!
                     DispatchQueue.main.async {
                         let image = UIImage(data: imageData)!
                         cell.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit)
@@ -338,14 +361,14 @@ extension VoteThucDonVC: UITableViewDelegate, UITableViewDataSource {
             }
         case 2:
             if !buaChieu.isEmpty {
+                let tenMA = self.buaChieu[indexPath.row].tenMA
+                let kCal = self.buaChieu[indexPath.row].kCal!
+                let protein = self.buaChieu[indexPath.row].p!
+                let lipit = self.buaChieu[indexPath.row].l!
+                let glucit = self.buaChieu[indexPath.row].g!
                 DispatchQueue.global().async {
                     let url = URL(string: self.buaChieu[indexPath.row].imageURL)!
                     let imageData = try! Data(contentsOf: url)
-                    let tenMA = self.buaChieu[indexPath.row].tenMA
-                    let kCal = self.buaChieu[indexPath.row].kCal!
-                    let protein = self.buaChieu[indexPath.row].p!
-                    let lipit = self.buaChieu[indexPath.row].l!
-                    let glucit = self.buaChieu[indexPath.row].g!
                     DispatchQueue.main.async {
                         let image = UIImage(data: imageData)!
                         cell.configure(image: image, tenMon: tenMA, kCal: kCal, protein: protein, lipit: lipit, glucit: glucit)
