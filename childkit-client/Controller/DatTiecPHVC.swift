@@ -13,6 +13,7 @@ import FirebaseAuth
 import DatePickerDialog
 import Toast_Swift
 import ChameleonFramework
+import MessageUI
 
 protocol GetListData {
     func getListMASelected(listMASelected: [MonAn])
@@ -211,6 +212,7 @@ class DatTiecPHVC: UIViewController, GetListData, UITextFieldDelegate {
                 ] as [String : Any]
             
             ref_DatTiec.childByAutoId().setValue(datTiec)
+//            sendMail()
             
             let alert = UIAlertController(title: "Trạng thái đặt tiệc", message: "Bạn đã đặt tiệc thành công", preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "Ok", style: .default) { (_) in
@@ -224,7 +226,38 @@ class DatTiecPHVC: UIViewController, GetListData, UITextFieldDelegate {
         }
     }
     
+    func sendMail() {
+        let mailComposeVC = self.configMailController()
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeVC, animated: true, completion: nil)
+        } else {
+            print("Không thể gửi được")
+        }
+    }
     
+    func configMailController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.setSubject("Yêu cầu đặt tiệc mới từ phụ huynh")
+        mailComposerVC.setMessageBody("<b>Có yêu cầu mới từ phụ huynh của em \(selectTre[0].ten)</b>", isHTML: true)
+        mailComposerVC.setToRecipients(["devbrownbear@gmail.com"])
+        mailComposerVC.mailComposeDelegate = self
+        return mailComposerVC
+    }
+    
+//    func showMailError() {
+//        let sendMailErrorAlert = UIAlertController(title: "Không thể gửi email", message: "Thiết bị của bạn không thể gửi email", preferredStyle: .alert)
+//        let dismiss = UIAlertAction(title: "Ok", style: .default, handler: nil)
+//        sendMailErrorAlert.addAction(dismiss)
+//        self.present(sendMailErrorAlert, animated: true, completion: nil)
+//    }
+    
+    
+}
+
+extension DatTiecPHVC: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension DatTiecPHVC: UITableViewDelegate, UITableViewDataSource {

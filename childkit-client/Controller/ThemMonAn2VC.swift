@@ -26,8 +26,7 @@ class ThemMonAn2VC: UIViewController, UISearchBarDelegate {
     var thu: String!
     var bua: String!
     var selectedMA = [MonAn]()
-    var isReset: Bool!
-    
+
     var delegate: GetListData!
     
     override func viewDidLoad() {
@@ -113,12 +112,6 @@ class ThemMonAn2VC: UIViewController, UISearchBarDelegate {
     }
     
     @objc func themMonAn() {
-        print(isReset)
-        if isReset {
-            for monAn in listMA {
-                monAn.isChecked = false
-            }
-        }
         delegate.getListMASelected(listMASelected: selectedMA)
         
         navigationController?.popViewController(animated: true)

@@ -12,6 +12,7 @@ import FirebaseDatabase
 import DatePickerDialog
 import FirebaseAuth
 import ChameleonFramework
+import MessageUI
 
 class DatTiecGVVC: UIViewController, GetListData, UITextFieldDelegate, UITextViewDelegate {
 
@@ -191,7 +192,6 @@ class DatTiecGVVC: UIViewController, GetListData, UITextFieldDelegate, UITextVie
     @IBAction func themBtnWasPressed(_ sender: CornerButton) {
         print("Hàm them mon  ")
         let themMonAn2VC = storyboard?.instantiateViewController(withIdentifier: "themmonan2") as! ThemMonAn2VC
-        themMonAn2VC.isReset = isReset
         themMonAn2VC.delegate = self
         navigationController?.pushViewController(themMonAn2VC, animated: true)
     }
@@ -214,7 +214,7 @@ class DatTiecGVVC: UIViewController, GetListData, UITextFieldDelegate, UITextVie
                 ] as [String : Any]
             ref_DatTiec_GV.childByAutoId().setValue(datTiec)
             
-            isReset = true
+//            sendMail()
             
             let alert = UIAlertController(title: "Trạng thái đặt tiệc", message: "Bạn đã đặt tiệc thành công", preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "Ok", style: .default) { (_) in
@@ -226,6 +226,31 @@ class DatTiecGVVC: UIViewController, GetListData, UITextFieldDelegate, UITextVie
         }
     }
     
+    func sendMail() {
+    let mailComposeVC = self.configMailController()
+    if MFMailComposeViewController.canSendMail() {
+    self.present(mailComposeVC, animated: true, completion: nil)
+    } else {
+    print("Không gửi được email")
+    }
+    }
+    
+    func configMailController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.setSubject("Yêu cầu đặt tiệc mới từ giáo viên")
+        mailComposerVC.setMessageBody("<b>Có yêu cầu đặt tiệc từ giáo viên \(gv.hoTen!)</b>", isHTML: true)
+        mailComposerVC.setToRecipients(["devbrownbear@gmail.com"])
+        mailComposerVC.mailComposeDelegate = self
+        return mailComposerVC
+    }
+    
+//    func showMailError() {
+//        let sendMailErrorAlert = UIAlertController(title: "Không thể gửi email", message: "Thiết bị của bạn không thể gửi email", preferredStyle: .alert)
+//        let dismiss = UIAlertAction(title: "Ok", style: .default, handler: nil)
+//        sendMailErrorAlert.addAction(dismiss)
+//        self.present(sendMailErrorAlert, animated: true, completion: nil)
+//    }
+    
     func resetView() {
         descriptionDT.text = "Mô tả"
         descriptionDT.textColor = .gray
@@ -235,6 +260,12 @@ class DatTiecGVVC: UIViewController, GetListData, UITextFieldDelegate, UITextVie
         foodBirthTableView.reloadData()
         giaDatTiecTxt.text = "0 VNĐ"
     }
+}
+
+extension DatTiecGVVC: MFMailComposeViewControllerDelegate {
+//    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+//        controller.dismiss(animated: true, completion: nil)
+//    }
 }
 
 extension DatTiecGVVC: UITableViewDelegate, UITableViewDataSource {
