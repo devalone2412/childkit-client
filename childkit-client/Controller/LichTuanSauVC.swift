@@ -15,6 +15,10 @@ class LichTuanSauVC: UIViewController {
     @IBOutlet weak var thucDonSC: UISegmentedControl!
     @IBOutlet weak var thuSC: UISegmentedControl!
     @IBOutlet weak var danhSachMA: UITableView!
+    @IBOutlet weak var totalKcal: UILabel!
+    @IBOutlet weak var totalProtein: UILabel!
+    @IBOutlet weak var totalLipit: UILabel!
+    @IBOutlet weak var totalGlucit: UILabel!
     
     let itemsThucDon = ["Thực đơn 1", "Thực đơn 2"]
     let itemsThu = ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6"]
@@ -125,14 +129,92 @@ class LichTuanSauVC: UIViewController {
                     })
                 }
                 print(self.buaSang, self.buaTrua, self.buaChieu)
+                self.sumTPDD(buaSang: self.buaSang, buaTrua: self.buaTrua, buaChieu: self.buaChieu)
                 self.danhSachMA.reloadData()
             }
         }
     }
     
+    func sumTPDD(buaSang: [MonAn], buaTrua: [MonAn], buaChieu: [MonAn]) {
+        var sumKcal = 0
+        var sumProtein = 0
+        var sumLipit = 0
+        var sumGlucit = 0
+        
+        for ma in buaSang {
+            sumKcal += Int(ma.kCal)!
+            sumProtein += Int(ma.p)!
+            sumLipit += Int(ma.l)!
+            sumGlucit += Int(ma.g)!
+        }
+        
+        for ma in buaTrua {
+            sumKcal += Int(ma.kCal)!
+            sumProtein += Int(ma.p)!
+            sumLipit += Int(ma.l)!
+            sumGlucit += Int(ma.g)!
+        }
+        
+        for ma in buaChieu {
+            sumKcal += Int(ma.kCal)!
+            sumProtein += Int(ma.p)!
+            sumLipit += Int(ma.l)!
+            sumGlucit += Int(ma.g)!
+        }
+        
+        totalKcal.text = "Cal: \(sumKcal)"
+        totalProtein.text = "Protein: \(sumProtein) g"
+        totalLipit.text = "Lipit: \(sumLipit) g"
+        totalGlucit.text = "Glucit: \(sumGlucit) g"
+    }
+    
     func configNav() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add
+        let themMonItem = UIBarButtonItem(barButtonSystemItem: .add
             , target: self, action: #selector(themMonAn))
+        let saveTempItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTemplate))
+        let loadTempItem = UIBarButtonItem(title: "Load", style: .plain, target: self, action: #selector(loadTemplate))
+        navigationItem.rightBarButtonItems = [themMonItem, saveTempItem, loadTempItem]
+    }
+    
+    @objc func loadTemplate() {
+        
+    }
+    
+    @objc func saveTemplate() {
+        print("Đã click!")
+        var key: String!
+        switch thucDon {
+        case "Thực đơn 1":
+            key = defaults.object(forKey: "key_TD1") as? String
+        case "Thực đơn 2":
+            key = defaults.object(forKey: "key_TD2") as? String
+        default:
+            return
+        }
+        
+        ref_TD_Vote.child(key).observeSingleEvent(of: .value, with: { (snapshot) in
+            ref_TDTemplate.child(key).setValue(snapshot.value)
+        })
+        
+        let nameAlert = UIAlertController(title: "Lưu template", message: "Nhập tên template", preferredStyle: .alert)
+        nameAlert.addTextField { (textField) in
+            textField.placeholder = "Thực đơn hè 1"
+        }
+        
+        let saveAction = UIAlertAction(title: "Lưu", style: .default) { (_) in
+            let textField = nameAlert.textFields![0] as UITextField
+            ref_TDTemplate.child(key).updateChildValues(["name": textField.text!])
+            
+            let alert = UIAlertController(title: "Thông báo", message: "Lưu template thực đơn thành công", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+            })
+            
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        nameAlert.addAction(saveAction)
+        present(nameAlert, animated: true, completion: nil)
     }
     
     @objc func themMonAn() {

@@ -28,6 +28,8 @@
 		25ECED992297E21E00F3693B /* VoteThucDonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ECED982297E21E00F3693B /* VoteThucDonVC.swift */; };
 		25ECED9B2297E62900F3693B /* VoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ECED9A2297E62900F3693B /* VoteCell.swift */; };
 		3D14EA4622B0F82C00A116E6 /* NhanVien.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D14EA4522B0F82C00A116E6 /* NhanVien.swift */; };
+		3D1E640122D0F3F0006D7709 /* LoadTemplateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1E640022D0F3F0006D7709 /* LoadTemplateVC.swift */; };
+		3D1E640322D0F494006D7709 /* TemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1E640222D0F494006D7709 /* TemplateCell.swift */; };
 		3D21B31622AFDD5800F33ADB /* Tre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D21B31522AFDD5800F33ADB /* Tre.swift */; };
 		3D26C64322B3791B0021C9C8 /* XemThucDonDatTiec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D26C64222B3791B0021C9C8 /* XemThucDonDatTiec.swift */; };
 		3D26C64622B380170021C9C8 /* YeuCauGVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D26C64422B380170021C9C8 /* YeuCauGVCell.swift */; };
@@ -87,6 +89,8 @@
 		25ECED982297E21E00F3693B /* VoteThucDonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteThucDonVC.swift; sourceTree = "<group>"; };
 		25ECED9A2297E62900F3693B /* VoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteCell.swift; sourceTree = "<group>"; };
 		3D14EA4522B0F82C00A116E6 /* NhanVien.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NhanVien.swift; path = "childkit-client/Utils/NhanVien.swift"; sourceTree = SOURCE_ROOT; };
+		3D1E640022D0F3F0006D7709 /* LoadTemplateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadTemplateVC.swift; sourceTree = "<group>"; };
+		3D1E640222D0F494006D7709 /* TemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCell.swift; sourceTree = "<group>"; };
 		3D21B31522AFDD5800F33ADB /* Tre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Tre.swift; path = "childkit-client/Utils/Tre.swift"; sourceTree = SOURCE_ROOT; };
 		3D26C64222B3791B0021C9C8 /* XemThucDonDatTiec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XemThucDonDatTiec.swift; sourceTree = "<group>"; };
 		3D26C64422B380170021C9C8 /* YeuCauGVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YeuCauGVCell.swift; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 				3D503C6222B78A1B00DF01B3 /* AddFoodNoCategory.swift */,
 				3D5BB47822BC7A61001422E5 /* NguyenLieuVC.swift */,
 				3DBCE8A122BDD59E00C19393 /* ChinhSuaNLVC.swift */,
+				3D1E640022D0F3F0006D7709 /* LoadTemplateVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				3D94299B22998B76009F1976 /* ChildCell.swift */,
 				3DBA85C8229A47A50060ADDE /* CategoryCell.swift */,
 				3D5BB47A22BCB1DC001422E5 /* NguyenLieuCell.swift */,
+				3D1E640222D0F494006D7709 /* TemplateCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -395,6 +401,8 @@
 				2546D72322978785007ED0A2 /* LichThucDonVC.swift in Sources */,
 				3D2C68E522A672BD00AC8E7A /* ConfigDatabase.swift in Sources */,
 				259762832297A37F00F9A058 /* ChinhSuaLichCell.swift in Sources */,
+				3D1E640122D0F3F0006D7709 /* LoadTemplateVC.swift in Sources */,
+				3D1E640322D0F494006D7709 /* TemplateCell.swift in Sources */,
 				3DFA0E3822AA078600CFF802 /* MonAn.swift in Sources */,
 				3DFA0E3C22AA12D100CFF802 /* CornerImage.swift in Sources */,
 				3DFA0E3E22AA194F00CFF802 /* Category.swift in Sources */,
